@@ -1,0 +1,145 @@
+@charset "utf-8";
+@import "../node_modules/bulma/bulma.sass";
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+body > h1{
+  text-align: center;
+}
+
+/***************************************
+
+*****************************************/
+
+.play{
+  display:grid;
+  text-align: center;
+  font-size: 1.5em;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  max-height: 300px;
+
+}
+
+.win-choice{
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  font-weight: normal;
+  background: linear-gradient(180deg, rgba(20,20,20,1) 0%, rgba(25,25,25,1) 35%, rgba(62,62,62,1) 100%);
+  border: rgb(15, 15, 15) solid 3px;
+  border-radius: 10px;
+}
+.win-choice:hover {
+  background: linear-gradient(0deg, rgb(14, 75, 189) 0%, rgb(24, 90, 214) 35%, rgb(66, 148, 255) 100%);
+  border-color: rgb(19, 52, 112);
+}
+
+#admin-modal-card {
+  width: 1100px;
+}
+/***************************************
+
+
+.zero{
+  grid-area: zero;
+}
+
+.ratio{
+  grid-area: f;
+}
+
+.ratioTwo{
+  grid-area: s;
+}
+
+.ratioThree{
+  grid-area: t;
+}
+
+.first{
+  grid-area: b;
+}
+
+.even{
+  grid-area: e;
+}
+.red{
+  grid-area: r;
+  background-color: red;
+  color: red;
+}
+.black{
+  grid-area: bl;
+  background-color: black;
+}
+.odd{
+  grid-area: o;
+}
+.last{
+  grid-area: l;
+}
+
+*****************************************/
+
+
+.numGrid {
+  text-align: center;
+  font-size: 1.5em;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  max-height: 300px;
+  max-width: 350px;
+}
+
+.sectorGrid {
+  text-align: center;
+  font-size: 1.5em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  max-height: 300px;
+}
+
+.choice{
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  font-weight: normal;
+  background: linear-gradient(180deg, rgba(20,20,20,1) 0%, rgba(25,25,25,1) 35%, rgba(62,62,62,1) 100%);
+  border: rgb(15, 15, 15) solid 3px;
+  border-radius: 10px;
+}
+.choice:hover {
+  background: linear-gradient(0deg, rgb(14, 75, 189) 0%, rgb(24, 90, 214) 35%, rgb(66, 148, 255) 100%);
+  border-color: rgb(19, 52, 112);
+}
+
+
+
+/***************************************
+
+*****************************************/
+
+.num{
+  height: 50px;
+  width: 50px;
+  border-color: rgb(44, 44, 44);
+}
+.black{
+  border-color: rgb(44, 44, 44);
+}
+
+.zero{
+  border-color: rgb(39, 185, 95);
+}
+
+.r, .red{
+  border-color: rgb(255, 73, 73);
+}

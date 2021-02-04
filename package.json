@@ -1,0 +1,30 @@
+{
+  "name": "CasinoRoulette",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron . ",
+    "css-build": "node-sass --omit-source-map-url sass/style.scss public/css/style.css",
+    "rt": "node-sass --omit-source-map-url sass/roulette.scss public/css/roulette.css",
+    "build": "./node_modules/.bin/babel js --out-dir ./public/js",
+    "css-watch": "npm run css-build --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "bulma": "^0.9.1",
+    "node-sass": "^5.0.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "axios": "^0.21.0",
+    "chart.js": "^2.9.4",
+    "circular-json": "^0.5.9",
+    "jspdf": "^2.1.1"
+  }
+}

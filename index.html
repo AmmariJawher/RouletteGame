@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="is-unselectable">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roulette Game</title>
+  <link rel="stylesheet" href="public/css/style.css">
+</head>
+
+<body>
+  <div class="">
+    <button onclick="showModal('adminModal')">Admin</button>
+    <div class="columns">
+      <div class="column">
+        <section class="columns">
+          <div class="column numGrid m-2">
+            <div class="choice num r">1</div>
+            <div class="choice num">2</div>
+            <div class="choice num r">3</div>
+            <div class="choice num">4</div>
+            <div class="choice num r">5</div>
+            <div class="choice num">6</div>
+            <div class="choice num r">7</div>
+            <div class="choice num">8</div>
+            <div class="choice num r">9</div>
+            <div class="choice num">10</div>
+            <div class="choice num">11</div>
+            <div class="choice num r">12</div>
+            <div class="choice num">13</div>
+            <div class="choice num r">14</div>
+            <div class="choice num">15</div>
+            <div class="choice num r">16</div>
+            <div class="choice num">17</div>
+            <div class="choice num r">18</div>
+            <div class="choice num r">19</div>
+            <div class="choice num">20</div>
+            <div class="choice num r">21</div>
+            <div class="choice num">22</div>
+            <div class="choice num r">23</div>
+            <div class="choice num">24</div>
+            <div class="choice num r">25</div>
+            <div class="choice num">26</div>
+            <div class="choice num r">27</div>
+            <div class="choice num">28</div>
+            <div class="choice num">29</div>
+            <div class="choice num r">30</div>
+            <div class="choice num">31</div>
+            <div class="choice num r">32</div>
+            <div class="choice num">33</div>
+            <div class="choice num r">34</div>
+            <div class="choice num">35</div>
+            <div class="choice num r">36</div>
+          </div>
+          <div class="column">
+            <h4 class="subtitle is-5 my-1">COULEUR</h4>
+            <section class="sectorGrid">
+              <div class="choice black" value="black">NOIR</div>
+              <div class="choice red" value="red">ROUGE</div>
+              <div class="choice zero">VERT</div>
+            </section>
+            <h4 class="subtitle is-5 my-1">DOUZAINE</h4>
+            <section class="sectorGrid">
+              <div class="choice ratio" value="first">1-12</div>
+              <div class="choice ratioTwo" value="second">13-24</div>
+              <div class="choice ratioThree" value="third">25-36</div>
+            </section>
+            <h4 class="subtitle is-5 my-1">PAIR/IMPAIR</h4>
+            <section class="sectorGrid">
+              <div class="choice even" value="even">PAIR</div>
+              <div class="choice odd" value="odd">IMPAIR</div>
+            </section>
+            <h4 class="subtitle is-5 my-1">SECTOR</h4>
+            <section class="sectorGrid">
+              <div class="choice col" value="sectorA">A</div>
+              <div class="choice col" value="sectorB">B</div>
+              <div class="choice col" value="sectorC">C</div>
+              <div class="choice col" value="sectorD">D</div>
+              <div class="choice col" value="sectorE">E</div>
+              <div class="choice col" value="sectorF">F</div>
+            </section>
+          </div>
+        </section>
+      </div>
+      <div class="column is-one-quarter">
+        <div class="tabs is-fullwidth">
+          <ul>
+            <li class="tablinks" onclick="openTab(event, 'Info')">
+              <a>
+                <span>Info</span>
+              </a>
+            </li>
+            <li id="history-tab" class="tablinks" onclick="openTab(event, 'History')">
+              <a>
+                <span>History</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <section class="is-size-7 tabcontent is-block" id="History">
+          <div class="table-container" style="overflow-y: scroll; height: 500px;">
+            <table class="table is-fullwidth is-bordered is-striped is-narrow is-hoverable">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Coupon Nr.</th>
+                  <th>Pari</th>
+                  <th>Paiement</th>
+                </tr>
+              </thead>
+              <tbody id="history-content">
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Tickets History Details -->
+          <div class="modal" id="historyModal">
+            <div class="modal-background" onclick="hideModal('historyModal')"></div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <button class="delete" aria-label="close" onclick="hideModal('historyModal')"></button>
+              </header>
+              <section class="modal-card-body">
+                <table class="table is-fullwidth">
+                  <tbody>
+                    <tr>
+                      <th>Numéro de Ticket</th><td class="ticket-info"></td>
+                      <th>Mise Total</th><td class="ticket-info"></td>
+                    </tr>
+                    <tr>
+                      <th>Heure de réservation</th><td class="ticket-info"></th>
+                      <th>Sélections</th><td class="ticket-info"></th>
+                    </tr>
+                    <tr>
+                      <th>Status</th><td class="ticket-info"></th>
+                      <th>Paiement total</th><td class="ticket-info"></th>
+                    </tr>
+                  </tbody>
+                </table>
+                <h5 class="title is-5">Dètail de système</h5>
+                <table class="table is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>GR</th>
+                      <th>Combi</th>
+                      <th>Mise</th>
+                      <th>Gain Min potential</th>
+                      <th>Gain Max potential</th>
+                      <th>Gagnez</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ticket-detail">
+                  </tbody>
+                </table>
+                <h5 class="title is-5">List de paris</h5>
+                <table class="table is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>Heure</th>
+                      <th>Evénement</th>
+                      <th>selection</th>
+                      <th>Resultat de l'event</th>
+                      <th>Resultat</th>
+                      <th>Cotes</th>
+                      <th>Gagnez</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ticket-choices">
+                  </tbody>
+                </table>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <div class="modal" id="adminModal">
+          <div class="modal-background" onclick="hideModal('adminModal')"></div>
+          <div class="modal-card" id="admin-modal-card">
+            <header class="modal-card-head">
+              <button class="delete" aria-label="close" onclick="hideModal('adminModal')"></button>
+            </header>
+            <section class="modal-card-body">
+              <button class="button is-primary" onclick="getEventId()">Update Chart</button>
+              <canvas id="myChart" width="150" height="50"></canvas>
+              <div class="cowlumn play m-2">
+                <div class="win-choice num zero">0</div>
+                <div class="win-choice num r">1</div>
+                <div class="win-choice num">2</div>
+                <div class="win-choice num r">3</div>
+                <div class="win-choice num">4</div>
+                <div class="win-choice num r">5</div>
+                <div class="win-choice num">6</div>
+                <div class="win-choice num r">7</div>
+                <div class="win-choice num">8</div>
+                <div class="win-choice num r">9</div>
+                <div class="win-choice num">10</div>
+                <div class="win-choice num">11</div>
+                <div class="win-choice num r">12</div>
+                <div class="win-choice num">13</div>
+                <div class="win-choice num r">14</div>
+                <div class="win-choice num">15</div>
+                <div class="win-choice num r">16</div>
+                <div class="win-choice num">17</div>
+                <div class="win-choice num r">18</div>
+                <div class="win-choice num r">19</div>
+                <div class="win-choice num">20</div>
+                <div class="win-choice num r">21</div>
+                <div class="win-choice num">22</div>
+                <div class="win-choice num r">23</div>
+                <div class="win-choice num">24</div>
+                <div class="win-choice num r">25</div>
+                <div class="win-choice num">26</div>
+                <div class="win-choice num r">27</div>
+                <div class="win-choice num">28</div>
+                <div class="win-choice num">29</div>
+                <div class="win-choice num r">30</div>
+                <div class="win-choice num">31</div>
+                <div class="win-choice num r">32</div>
+                <div class="win-choice num">33</div>
+                <div class="win-choice num r">34</div>
+                <div class="win-choice num">35</div>
+                <div class="win-choice num r">36</div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <section class="is-size-7 tabcontent is-block" id="History">
+          
+        </section>
+
+        <section class="is-size-7 tabcontent is-block" id="Info">
+          <div class="table-container" style="overflow-y: scroll; height: 210px;">
+            <table class="table is-fullwidth is-bordered is-striped is-narrow is-hoverable">
+              <thead>
+                <tr>
+                  <th>Selection</th>
+                  <th>Coutes</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <!-- Enter is considred a data in html childnode function so avoid using enter-->
+              <tbody id="Selection"></tbody>
+            </table>
+          </div>
+          
+          <div class="betController tabs is-toggle is-centered is-small is-fullwidth">
+            <ul>
+              <li class="addToBet">
+                <a>
+                  <span>1</span>
+                </a>
+              </li>
+              <li class="addToBet">
+                <a>
+                  <span>5</span>
+                </a>
+              </li>
+              <li class="addToBet">
+                <a>
+                  <span>10</span>
+                </a>
+              </li>
+              <li class="addToBet">
+                <a>
+                  <span>20</span>
+                </a>
+              </li>
+              <li class="addToBet">
+                <a>
+                  <span>Effacer</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="table-container">
+            <table class="table is-fullwidth is-bordered is-striped is-narrow">
+              <thead>
+                <tr>
+                  <th>Combi</th>
+                  <th>Max</th>
+                  <th>Min</th>
+                  <th>Mise</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td id="combi">0</td>
+                  <td id="cotesMax">-</td>
+                  <td id="cotesMin">-</td>
+                  <td id="gr">1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <table class="table is-fullwidth has-background-grey-lighter is-narrow">
+            <thead>
+              <tr>
+                <th>Gain potential MAX</th>
+                <td id="maxGain">0</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Gain potential MIN</th>
+                <td id="minGain">0</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="table-container">
+            <table class="table is-fullwidth is-narrow">
+              <tbody>
+                <tr>
+                  <th>Mise totale:</th>
+                  <td id="mise">1</td>
+                </tr>
+                <tr>
+                  <th>Gain total Max:</th>
+                  <td class="maxGain">36</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tabs is-toggle is-fullwidth">
+            <ul>
+              <li class="has-background-danger has-text-black" onclick="resetConfig()">
+                <a>
+                  <span class="icon is-small "><i class="fas fa-image" aria-hidden="true"></i></span>
+                  <span>Reset</span>
+                </a>
+              </li>
+              <li class="has-text-black has-background-success">
+                <a id="print">
+                  <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+                  <span>Print</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script> 
+  <script src="public/js/print.js"></script>
+  <script src="Chart.min.js"></script>
+  <script src="./chart.js"></script>
+  <script src="./node_modules/axios/dist/axios.min.js"></script>
+  <script src="public/js/main.js" type="text/javascript"></script>
+</body>
+
+</html>

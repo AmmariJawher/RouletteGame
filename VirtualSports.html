@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html class="no-js" lang="" style="height: 100%;">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Virtual Sports</title>
+    <meta name="description" content="">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1 initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="stylesheet" type="text/css" href="./Virtual Sports_files/styles-bundle.css">
+    <link href="./Virtual Sports_files/overlays-bundle.css" rel="stylesheet" type="text/css">            
+    <style type="text/css">
+        .customer-logo {
+            background-color: transparent !important;
+            background-image: url(./public/images/1719.svg) !important;
+            background-size: contain !important;
+            background-repeat: no-repeat !important;
+        }
+        @font-face {
+            font-family: "Roboto Condensed";
+            src: url("./public/fonts/roboto-condensed.regular.ttf");
+        }
+        @font-face {
+            font-family: "gbdigits";
+            src: url("./public/fonts/digital-dismay.otf");
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="./Virtual Sports_files/tv.f759a8cd4f7ee2feb0c91af068b7a053.css">
+</head>
+
+<body class="wv-body">
+    <div data-v-26bc270a="" id="root" class="wv-root ext-body saw">
+                <div class="saw-container" data-style="wood">
+                        <div class="saw-customer-logo tv-customer_logo customer-logo"></div>
+                        <div class="saw-progressbar" data-phase="announcement">
+                            <div class="announcement" style="height: 879px;"></div>
+                        </div>
+                        <div id="event">
+                            <div class="saw-event">ÉVÉNEMENT:&nbsp;<span id="event-counter">250922588</span></div>
+                        </div>
+ 
+                        <div class="saw-wheel-container" data-style="wood">
+                            <div id="saw-wheel-top-pointer" class="chrome"></div>
+                            <div id="saw-wheel-bg" class="animate"  ></div>
+                            <div id="saw-wheel-sectors" class="chrome"></div>
+                            <div class="saw-wheel-container-border-background" style="height: 1100px; width: 1100px;"></div>
+                            <div class="saw-wheel-container-border"></div>
+                            <!--
+                            <canvas id="canvas" class="saw-wheel-container-canvas" width="500" height="500"
+                            style="filter: blur(0px);"></canvas>
+                            -->
+                            <div class="saw-wheel-container-inner">
+                                <svg id="sawSector" viewBox="0 0 1000 1000" data-color="black" data-visibility=""
+                                    data-finish="finish">
+                                    <path id="sawSectorColor" d="M527.2,155.7l12-145.3c-29.5-2-51.4-2.1-80.5,0.2l13.2,145.3c7.9-1,17-1.1,26.8-1.2
+        		C509.2,154.7,518.7,154.7,527.2,155.7z"></path>
+                                    <text id="sawSectorValue" transform="translate(499 62)"
+                                        text-anchor="middle">31</text>
+                                </svg>
+                                <svg id="sawBorder" viewBox="0 0 1000 1000">
+                                    <defs>
+                                        <radialgradient id="sawInnerShadow" cx="500" cy="500" r="424"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop offset="0.9" stop-opacity="0"></stop>
+                                            <stop offset="1" stop-opacity="0.9"></stop>
+                                        </radialgradient>
+                                        <lineargradient id="sawInnerBorderA" x1="195.24" y1="195.24" x2="804.76"
+                                            y2="804.76" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0.4" stop-color="#fff" stop-opacity="0.4"></stop>
+                                            <stop offset="0.6" stop-opacity="0.6"></stop>
+                                        </lineargradient>
+                                        <lineargradient id="sawInnerBorderB" x1="204.36" y1="204.36" x2="808.98"
+                                            y2="808.98" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0.4" stop-opacity="0.6"></stop>
+                                            <stop offset="0.6" stop-color="#fff" stop-opacity="0.4"></stop>
+                                        </lineargradient>
+                                    </defs>
+                                    <circle cx="500" cy="500" r="424" style="fill: url(#sawInnerShadow)"></circle>
+                                    <path id="sawInnerBorder"
+                                        d="M500,69C262,69,69,262,69,500S262,931,500,931,931,738,931,500,738,69,500,69Zm0,855C265.8,924,76,734.2,76,500S265.8,76,500,76,924,265.8,924,500,734.2,924,500,924Z">
+                                    </path>
+                                    <path
+                                        d="M500,69C262,69,69,262,69,500S262,931,500,931,931,738,931,500,738,69,500,69Zm0,858.5C263.9,927.5,72.5,736.1,72.5,500S263.9,72.5,500,72.5,927.5,263.9,927.5,500,736.1,927.5,500,927.5Z"
+                                        style="fill: url(#sawInnerBorderA)"></path>
+                                    <path
+                                        d="M500,72.5C263.9,72.5,72.5,263.9,72.5,500S263.9,927.5,500,927.5,927.5,736.1,927.5,500,736.1,72.5,500,72.5ZM500,924C265.8,924,76,734.2,76,500S265.8,76,500,76,924,265.8,924,500,734.2,924,500,924Z"
+                                        style="fill: url(#sawInnerBorderB)"></path>
+                                </svg>
+                            </div>
+                            <div class="saw-wheel-container-pointer" data-color="black" data-visibility=""
+                                data-finish="finish">
+                                <div class="saw-wheel-container-pointer-arrow">
+                                    <svg viewBox="0 0 34 44">
+                                        <defs>
+                                            <lineargradient id="arrowA" x1="17" y1="44" x2="17"
+                                                gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stop-opacity="0.5"></stop>
+                                                <stop offset="50%" stop-opacity="0.2"></stop>
+                                            </lineargradient>
+                                            <lineargradient id="arrowB" x1="17" y1="44" x2="17"
+                                                gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stop-opacity="0.3"></stop>
+                                                <stop offset="40%" stop-opacity="0"></stop>
+                                            </lineargradient>
+                                        </defs>
+                                        <polygon id="sawArrow" points="17 0 0 44 34 44 17 0"></polygon>
+                                        <polygon points="17 0 0 44 4 44 17 9.1 30 44 34 44 17 0"
+                                            style="fill: url(#arrowA)"></polygon>
+                                        <polygon points="17 9.1 4 44 30 44 17 9.1" style="fill: url(#arrowB)"></polygon>
+                                    </svg>
+                                </div>
+                                <div class="saw-wheel-container-pointer-value">
+                                    <svg viewBox="0 0 250 250">
+                                        <defs>
+                                            <radialgradient id="a" cx="125" cy="115.78" r="125.01"
+                                                gradientUnits="userSpaceOnUse">
+                                                <stop offset="0" stop-color="#fff" stop-opacity="0"></stop>
+                                                <stop offset="0.68" stop-color="#737171" stop-opacity="0.2"></stop>
+                                                <stop offset="0.98" stop-color="#0a0909" stop-opacity="0.66"></stop>
+                                                <stop offset="1" stop-opacity="0.7"></stop>
+                                            </radialgradient>
+                                            <radialgradient id="b" cx="125.26" cy="10.16" r="113.06"
+                                                gradientUnits="userSpaceOnUse">
+                                                <stop offset="0" stop-color="#fff" stop-opacity="0.7"></stop>
+                                                <stop offset="0.11" stop-color="#fff" stop-opacity="0.66"></stop>
+                                                <stop offset="0.3" stop-color="#fff" stop-opacity="0.54"></stop>
+                                                <stop offset="0.56" stop-color="#fff" stop-opacity="0.35"></stop>
+                                                <stop offset="0.86" stop-color="#fff" stop-opacity="0.09"></stop>
+                                                <stop offset="0.96" stop-color="#fff" stop-opacity="0"></stop>
+                                            </radialgradient>
+                                            <radialgradient id="c" cx="125" cy="125" r="125"
+                                                gradientUnits="userSpaceOnUse">
+                                                <stop offset="0" stop-color="#fff" stop-opacity="0"></stop>
+                                                <stop offset="0.95" stop-color="#737171" stop-opacity="0"></stop>
+                                                <stop offset="1" stop-opacity="0.7"></stop>
+                                            </radialgradient>
+                                        </defs>
+                                        <circle id="sawCenterColor" cx="125" cy="125" r="125"></circle>
+                                        <text id="sawCenterText" transform="translate(125 172.9)" text-anchor="middle">31</text>
+                                        <circle cx="125" cy="125" r="125" style="fill: url(#a)"></circle>
+                                        <circle cx="125" cy="125" r="125" style="fill: url(#b)"></circle>
+                                        <circle cx="125" cy="125" r="125" style="fill: url(#c)"></circle>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+
+
+
+
+                        <div id="nextGameCounter">
+                            <div class="saw-next-game" data-phase="announcement">
+                                <span class="saw-next-game-title">Fermeture des paris</span>
+                                <span class="saw-next-game-counter">02:38</span>
+                            </div>
+                        </div>
+                        <div class="spinwin">
+                            <div class="saw-logo gameIcon"></div>
+                        </div>
+                        <div id="history">
+                            <div class="saw-history saw-history-col">
+                                <div class="saw-history-row">
+                                    <div class="saw-history-col pay-table">
+
+                                        <div class="saw-history-header">
+                                            <div>Table des paiements</div>
+                                        </div>
+                                        <div class="saw-history-row">
+                                            <div class="pay-table-caption">COULEUR</div>
+                                            <div class="saw-history-col">
+
+
+                                                <div class="saw-history-block saw-history-block-red " data-animation="false">
+                                                    <span>2</span>
+                                                </div>
+
+
+                                                <div class="saw-history-block saw-history-block-black " data-animation="false">
+                                                    <span>2</span>
+                                                </div>
+
+
+                                                <div class="saw-history-block saw-history-block-green " data-animation="false">
+                                                    <span>36</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="saw-history-row">
+                                            <div class="pay-table-caption">DOUZAINES</div>
+
+
+                                            <div class="saw-history-block saw-history-block-neutral " data-animation="false">
+                                                <span>3</span>
+                                            </div>
+                                        </div>
+                                        <div class="saw-history-row">
+                                            <div class="pay-table-caption">SEGMENTS</div>
+                                            <div class="saw-history-block saw-history-block-neutral " data-animation="false">
+                                                <span>6</span>
+                                            </div>
+                                        </div>
+                                        <div class="saw-history-row">
+                                            <div class="pay-table-caption">PAIR/IMPAIR</div>
+                                            <div class="saw-history-block saw-history-block-neutral " data-animation="false">
+                                                <span>2</span>
+                                            </div>
+                                        </div>
+                                        <div class="saw-history-row">
+                                            <div class="pay-table-caption">NUMÉRO</div>
+                                            <div class="saw-history-block saw-history-block-neutral " data-animation="false">
+                                                <span>36</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="saw-history-col history">
+
+                                        <div class="saw-history-header">
+                                            <div>HISTOIRE</div>
+                                        </div>
+                                        <div id="event-history" class="saw-history-col">
+                                            <div class="saw-history-row saw-history-row_bg">
+                                                <div class="saw-history-id" data-animation="">
+                                                    <span>#250921420</span>
+                                                </div>
+                                                <div class="saw-history-block saw-history-block-black " data-animation="false">
+                                                    <span>31</span>
+                                                </div>
+                                            </div>
+                                            <div class="saw-history-row saw-history-row_bg">
+                                                <div class="saw-history-id" data-animation="">
+                                                    <span>#250920215</span>
+                                                </div>
+                                                <div class="saw-history-block saw-history-block-red " data-animation="false">
+                                                    <span>23</span>
+                                                </div>
+                                            </div>
+                                            <div class="saw-history-row saw-history-row_bg">
+                                                <div class="saw-history-id" data-animation="">
+                                                    <span>#250919092</span>
+                                                </div>
+                                                <div class="saw-history-block saw-history-block-red " data-animation="false">
+                                                    <span>34</span>
+                                                </div>
+                                            </div>
+                                            <div class="saw-history-row saw-history-row_bg">
+                                                <div class="saw-history-id" data-animation="">
+                                                    <span>#250917821</span>
+                                                </div>
+                                                <div class="saw-history-block saw-history-block-red " data-animation="false">
+                                                    <span>9</span>
+                                                </div>
+                                            </div>
+                                            <div class="saw-history-row saw-history-row_bg">
+                                                <div class="saw-history-id" data-animation="">
+                                                    <span>#250916632</span>
+                                                </div>
+                                                <div class="saw-history-block saw-history-block-black " data-animation="false">
+                                                    <span>24</span>
+                                                </div>
+                                            </div>
+                                            <div class="saw-history-row saw-history-row_bg">
+                                                <div class="saw-history-id" data-animation="">
+                                                    <span>#250915563</span>
+                                                </div>
+                                                <div class="saw-history-block saw-history-block-red " data-animation="false">
+                                                    <span>9</span>
+                                                </div>
+                                            </div>
+                                            <div class="saw-history-row saw-history-row_bg">
+                                                <div class="saw-history-id" data-animation="">
+                                                    <span>#250914322</span>
+                                                </div>
+                                                <div class="saw-history-block saw-history-block-black " data-animation="false">
+                                                    <span>28</span>
+                                                </div>
+                                            </div>
+                                            <div class="saw-history-row saw-history-row_bg">
+                                                <div class="saw-history-id" data-animation="">
+                                                    <span>#250913142</span>
+                                                </div>
+                                                <div class="saw-history-block saw-history-block-red " data-animation="false">
+                                                    <span>16</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="saw-history-statistics">
+
+
+                                    <div class="saw-history-header">
+                                        <div>STATISTIQUES</div>
+                                        <div>(LES 120 DERNIERS TOURS)</div>
+                                    </div>
+                                    <div class="saw-statistics-table">
+                                        <div id="number-stat" class="saw-history-row">
+                                            <div class="saw-history-col">
+                                                <div class="saw-history-row saw-history-row_bg">
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>1</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>4</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>2</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>3</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>3</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>2</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>4</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>3</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>5</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>5</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>6</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>3</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>7</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>2</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>8</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>1</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>9</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>4</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>10</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>3</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>11</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>5</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>12</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>1</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="saw-history-col">
+                                                <div class="saw-history-row saw-history-row_bg">
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>13</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>2</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>14</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>3</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>15</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>1</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>16</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>5</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>17</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>1</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>18</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>3</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>19</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>0</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>20</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>2</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>21</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>7</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>22</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>6</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>23</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>7</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>24</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>4</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="saw-history-col">
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>25</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>3</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>26</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>2</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>27</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>4</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>28</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>5</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>29</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>3</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>30</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>3</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>31</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>5</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>32</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>2</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>33</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>0</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>34</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>2</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-black saw-history-color" data-animation="false">
+                                                        <span>35</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>4</span>
+                                                    </div>
+                                                </div>
+                                                <div class="saw-history-row saw-history-row_bg">
+
+
+                                                    <div class="saw-history-block saw-history-block-red saw-history-color" data-animation="false">
+                                                        <span>36</span>
+                                                    </div>
+                                                    <div class="saw-history-count" data-animation="">
+                                                        <span>3</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="saw-history-row saw-history-row_bg">
+
+
+                                            <div class="saw-history-block saw-history-block-green saw-history-color" data-animation="false">
+                                                <span>0</span>
+                                            </div>
+                                            <div id="zero" class="saw-history-block" data-animation=""><span>7</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="colors">
+
+                                    <div class="saw-history-header">
+                                        <div>COULEURS</div>
+                                        <div>(LES 120 DERNIERS TOURS)</div>
+                                    </div>
+                                    <div class="saw-history-row">
+
+
+                                        <div class="saw-history-block saw-history-block-red " data-animation="false">
+                                            <span class="color-stat">0</span>
+                                        </div>
+
+
+                                        <div class="saw-history-block saw-history-block-black " data-animation="false">
+                                            <span class="color-stat">0</span>
+                                        </div>
+
+
+                                        <div class="saw-history-block saw-history-block-green " data-animation="false">
+                                            <span class="color-stat">0</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="dozens">
+
+                                    <div class="saw-history-header">
+                                        <div>DOUZAINES</div>
+                                        <div>(LES 120 DERNIERS TOURS)</div>
+                                    </div>
+                                    <div class="saw-history-row">
+                                        <div class="saw-history-row">
+                                            <div class="saw-history-block saw-history-block-neutral">1-12</div>
+                                            <div class="saw-history-count" data-animation="">
+                                                <span class="twelves-stat">0</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="saw-history-row">
+                                            <div class="saw-history-block saw-history-block-neutral">13-24</div>
+                                            <div class="saw-history-count" data-animation="">
+                                                <span class="twelves-stat">0</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="saw-history-row">
+                                            <div class="saw-history-block saw-history-block-neutral">25-36</div>
+                                            <div class="saw-history-count" data-animation="">
+                                                <span class="twelves-stat">0</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dozens">
+
+                                    <div class="saw-history-header">
+                                        <div>SEGMENTS</div>
+                                        <div>(LES 120 DERNIERS TOURS)</div>
+                                    </div>
+                                    <div class="saw-history-row">
+                                        <div class="saw-history-row">
+                                            <div class="saw-history-block saw-history-block-neutral">A</div>
+                                            <div class="saw-history-count" data-animation="">
+                                                <span class="section-stat">0</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="saw-history-row">
+                                            <div class="saw-history-block saw-history-block-neutral">B</div>
+                                            <div class="saw-history-count" data-animation="">
+                                                <span class="section-stat">0</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="saw-history-row">
+                                            <div class="saw-history-block saw-history-block-neutral">C</div>
+                                            <div class="saw-history-count" data-animation="">
+                                                <span class="section-stat">0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="saw-history-row">
+                                        <div class="saw-history-row">
+                                            <div class="saw-history-block saw-history-block-neutral">D</div>
+                                            <div class="saw-history-count" data-animation="">
+                                                <span class="section-stat">0</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="saw-history-row">
+                                            <div class="saw-history-block saw-history-block-neutral">E</div>
+                                            <div class="saw-history-count" data-animation="">
+                                                <span class="section-stat">0</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="saw-history-row">
+                                            <div class="saw-history-block saw-history-block-neutral">F</div>
+                                            <div class="saw-history-count" data-animation="">
+                                                <span class="section-stat">0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="hot-cold">
+
+                                    <div class="saw-history-header">
+                                        <div>CHAUD/FROID&nbsp;NUMÉROS</div>
+                                        <div>(LES 120 DERNIERS TOURS)</div>
+                                    </div>
+                                    <div class="saw-history-row">
+                                        <div class="saw-history-block-hot">CHAUD</div>
+
+
+                                        <div class="saw-history-block saw-history-block-green " data-animation="false">
+                                            <span>0</span>
+                                        </div>
+
+
+                                        <div class="saw-history-block saw-history-block-red " data-animation="false">
+                                            <span>21</span>
+                                        </div>
+
+
+                                        <div class="saw-history-block saw-history-block-red " data-animation="false">
+                                            <span>23</span>
+                                        </div>
+
+
+                                        <div class="saw-history-block saw-history-block-black " data-animation="false">
+                                            <span>22</span>
+                                        </div>
+
+
+                                        <div class="saw-history-block saw-history-block-black " data-animation="false">
+                                            <span>31</span>
+                                        </div>
+                                    </div>
+                                    <div class="saw-history-row">
+                                        <div class="saw-history-block-cold">FROID</div>
+
+
+                                        <div class="saw-history-block saw-history-block-red " data-animation="false">
+                                            <span>19</span>
+                                        </div>
+
+
+                                        <div class="saw-history-block saw-history-block-black " data-animation="false">
+                                            <span>33</span>
+                                        </div>
+
+
+                                        <div class="saw-history-block saw-history-block-black " data-animation="false">
+                                            <span>8</span>
+                                        </div>
+
+
+                                        <div class="saw-history-block saw-history-block-red " data-animation="false">
+                                            <span>12</span>
+                                        </div>
+
+
+                                        <div class="saw-history-block saw-history-block-black " data-animation="false">
+                                            <span>15</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <div data-keep-aspect="true" style="transform:scale(1.086111111111111,1.086111111111111) translate(218.51662404092087px, 0px)">     
+</body>
+
+<script src="./node_modules/axios/dist/axios.min.js"></script>
+<script src="./public/js/roulette.js"></script>
+</html>

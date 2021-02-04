@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+.animate {
+  // You can fine tune the speed of the wheel spin here
+  -webkit-transition: all 5s ease-out;
+  -moz-transition: all 5s ease-out;
+  -o-transition: all 5s ease-out;
+  transition: all 5s ease-out;
+}

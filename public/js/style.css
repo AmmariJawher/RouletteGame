@@ -1,0 +1,70 @@
+* {
+  font-size: 12px;
+  font-family: 'Times New Roman';
+}
+
+.grid-container {
+  padding-right: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px; 
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+}
+
+.centered {
+  text-align: center;
+  align-content: center;
+}
+
+.lineDashed {
+  float: right;
+  border-top: 1px dashed #000000;
+  width:90%;
+  margin:auto
+}
+
+.lineDotted {
+  background-image: linear-gradient(to right, black 25%, rgba(0, 0, 0, 0) 0%);
+  background-position: bottom;
+  background-size: 10px 1px;
+  background-repeat: repeat-x;
+  height: 2px;  
+}
+
+.gameTitle {
+  margin-top: 10px;
+  margin-bottom: 1px;
+}
+
+.gameInfo {
+  margin-top: 0;
+  margin-bottom: 12px;
+  padding-left: 15px;
+}
+
+.right {
+  text-align: right;
+}
+
+
+.ticket {
+  width: 255px;
+  max-width: 255px;
+}
+
+img {
+  max-width: inherit;
+  width: inherit;
+}
+
+@media print {
+  .hidden-print,
+  .hidden-print * {
+      display: none !important;
+  }
+}
