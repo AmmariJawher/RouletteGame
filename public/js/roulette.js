@@ -5,6 +5,7 @@ const wheel = document.getElementById("saw-wheel-bg")
 const timerText = document.querySelector(".saw-next-game-counter")
 const timerBar = document.querySelector(".announcement")
 const pointer = document.querySelector("#saw-wheel-top-pointer")
+const lights = document.querySelectorAll(".light")
 
 function getAllEvents() {
   axios.get('http://localhost:8000/events')
@@ -438,4 +439,40 @@ function checkIndex() {
   let degrees = (spinAngle%360)/9.72972972973;
   let index = Math.round(degrees)
   return index
+}
+
+//Light Animation
+function flashLights() {
+  lights.forEach(e => e.classList.add("glow"))
+  setTimeout(() => {
+    lights.forEach(e => e.classList.remove("glow"))  
+  }, 1000);
+}
+
+function AnimateLights() {
+  let index = 0
+  let animation = setInterval(() => {
+    if (index === 19) {
+      lights.forEach(e => e.classList.remove("glow"))
+    } else if (index === lights.length) {
+      lights.forEach(e => e.classList.remove("glow"))
+      clearInterval(animation)
+    }
+    lights[index].classList.add("glow")
+    index++
+  }, 200);
+}
+
+function flashPairLights() {
+  lights.forEach((e, i) => {if(i%2 === 0){e.classList.add("glow")}})
+  setTimeout(() => {
+    lights.forEach(e => e.classList.remove("glow"))  
+  }, 200);
+}
+
+function flashImpairLights() {
+  lights.forEach((e, i) => {if(i%2 !== 0){e.classList.add("glow")}})
+  setTimeout(() => {
+    lights.forEach(e => e.classList.remove("glow"))  
+  }, 200);
 }
