@@ -8,7 +8,7 @@
   left:55%;
   top:55%;
   transform:translate(-50%,-50%) rotate(-90deg);
-  z-index:1;
+  z-index:-2;
   width:103%;
   height:103%;
   overflow:hidden;
@@ -30,15 +30,15 @@
   height:24px;
   margin:-12px
  }
- .saw .saw-wheel-container-border-lights .light.wood.glow {
+ .saw-container[data-style=wood] .saw-wheel-container-border-lights .light.wood {
   background-color:#fff8b7;
   box-shadow:inset 0 0 1px 3px hsla(0,0%,100%,0),0 0 20px 30px rgba(255,250,158,.9),0 0 50px 35px rgba(253,255,212,.9),0 0 1px 2px #000
  }
- .saw .saw-wheel-container-border-lights .light.chrome.glow {
+ .saw-container[data-style=chrome] .saw-wheel-container-border-lights .light.glow {
   background-color:#fff9e9;
   box-shadow:inset 0 0 1px 3px hsla(0,0%,100%,0),0 0 20px 30px hsla(0,100%,99%,.9),0 0 50px 35px rgba(255,252,249,.9),0 0 1px 2px #000
  }
- .saw .saw-wheel-container-border-lights .light.carpet.glow {
+ .saw-container[data-style=carpet] .saw-wheel-container-border-lights .light.glow {
   background-color:#fdff7a;
   box-shadow:inset 0 0 1px 3px hsla(0,0%,100%,0),0 0 20px 30px rgba(255,242,133,.9),0 0 50px 35px rgba(255,254,193,.9),0 0 1px 2px #000
  }
@@ -6835,12 +6835,14 @@ body {
  transform:translate(-50%,-50%);
  display:block;
  filter:drop-shadow(0 0 1px #000) drop-shadow(0 0 10px #000);
+ /*! z-index: 4; */
 }
 .saw-container[data-style=wood] #saw-wheel-top-pointer:after {
  background:url(../public/images/top-pointer_gold.67f5ae3508037bb.png) 50% no-repeat
 }
 .saw-container[data-style=carpet] #saw-wheel-top-pointer:after {
  background:url(../public/images/top-pointer_wood.4a2d495171612cd.png) 50% no-repeat;
+ /*! z-index: 4; */
 }
 .saw-container[data-style=chrome] #saw-wheel-top-pointer:after {
  background:url(../public/images/top-pointer.96632fe41b48179.png) 50% no-repeat
@@ -6971,7 +6973,7 @@ body {
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
-  z-index: -2;
+  z-index: -3;
   justify-content: center;
   align-content: center;
   filter: drop-shadow(0 0 2px #000) drop-shadow(0 0 5px #000) drop-shadow(0 0 10px #000);

@@ -6,6 +6,7 @@ const timerText = document.querySelector(".saw-next-game-counter")
 const timerBar = document.querySelector(".announcement")
 const pointer = document.querySelector("#saw-wheel-top-pointer")
 const lights = document.querySelectorAll(".light")
+let shouldAnimateLights = false
 
 function getAllEvents() {
   axios.get('http://localhost:8000/events')
@@ -228,6 +229,7 @@ setInterval(function() {
           break;
         case 10000:
           timerBar.style.background = "#d0141c"
+          shouldAnimateLights = false
           break;
       }
     } 
@@ -406,7 +408,6 @@ const rotateWheel = function() {
   spinAngle = ((target - 1) * 9.8) + easeOut(spinDest, 0, spinAngleStart,spinDestTotal);
   wheel.style.rotate = String(spinAngle+"deg")
   pointerAngle = ((target - 1) * 9.8) + easeOut(spinDest, 0, spinAngleStart,spinDestTotal)*4;
-  console.log(String("translateX(-50%) rotate(-"+pointerAngle+"deg)"));
   
   pointer.style.transform = String("translateX(-50%) rotate(-"+(pointerAngle%43)+"deg)")
   let text = options[checkIndex()]
@@ -422,10 +423,16 @@ function stopRotateWheel(target) {
   pointer.style.transform = String("translateX(-50%) rotate(0deg)")
   document.getElementById("sawSectorValue").innerHTML = options[checkIndex()]
   getEvent(target)
+  flashLights()
+  setTimeout(() => flashLights(), 700);
+  setTimeout(() => flashLights(), 1400);
+  setTimeout(() => flashLights(), 2100);
+  setTimeout(() => flashLights(), 2800);
   setTimeout(() => {
     timerText.parentElement.style.display = "block"
     timerBar.parentElement.style.display = "block"
     changeStyle(background, wheelStyle)
+    shouldAnimateLights = true;
   }, 10000);
 }
 
@@ -446,33 +453,93 @@ function flashLights() {
   lights.forEach(e => e.classList.add("glow"))
   setTimeout(() => {
     lights.forEach(e => e.classList.remove("glow"))  
-  }, 1000);
+  }, 500);
 }
 
-function AnimateLights() {
+function animateHalfLights() {
   let index = 0
+  let index2 = 0
   let animation = setInterval(() => {
-    if (index === 19) {
-      lights.forEach(e => e.classList.remove("glow"))
-    } else if (index === lights.length) {
-      lights.forEach(e => e.classList.remove("glow"))
-      clearInterval(animation)
+    if (index > 18) {
+      lights[index2].classList.remove("glow")
+      index2++
     }
-    lights[index].classList.add("glow")
-    index++
-  }, 200);
+    if (index < lights.length) {
+      lights[index].classList.add("glow")
+      index++
+    } else if (index2 === lights.length){
+      clearInterval(animation)
+      lights.forEach(e => e.classList.remove("glow"))
+    }
+  }, 100);
+}
+
+function animateLights() {
+  let index = 0
+  let index2 = 0
+  let animation = setInterval(() => {
+    if (index < lights.length) {
+      lights[index].classList.add("glow")
+      index++
+    } else if (index2 < lights.length){
+      lights[index2].classList.remove("glow")
+      index2++
+    } else {
+      clearInterval(animation)
+      lights.forEach(e => e.classList.remove("glow"))
+    }
+  }, 100);
 }
 
 function flashPairLights() {
   lights.forEach((e, i) => {if(i%2 === 0){e.classList.add("glow")}})
   setTimeout(() => {
     lights.forEach(e => e.classList.remove("glow"))  
-  }, 200);
+  }, 500);
 }
 
 function flashImpairLights() {
   lights.forEach((e, i) => {if(i%2 !== 0){e.classList.add("glow")}})
   setTimeout(() => {
     lights.forEach(e => e.classList.remove("glow"))  
-  }, 200);
+  }, 500);
 }
+
+function fullAnimation() {
+  let randomValue = Math.floor((Math.random() * 6) +1)
+  switch (randomValue) {
+    case 1:
+      animateLights()
+      setTimeout(() => animateLights(), 7400);
+      break;
+    case 2:
+      animateLights()
+      setTimeout(() => animateHalfLights(), 7400);
+      break;
+    case 3:
+      flashImpairLights()
+      setTimeout(() => flashPairLights(), 1000);
+      setTimeout(() => flashImpairLights(), 2000);
+      setTimeout(() => flashPairLights(), 3000);
+      setTimeout(() => flashImpairLights(), 4000);
+      setTimeout(() => flashPairLights(), 5000);
+      setTimeout(() => flashImpairLights(), 6000);
+      setTimeout(() => flashPairLights(), 7000);
+
+      break;
+    case 5:
+      animateHalfLights()
+      break;
+    case 6:
+      flashLights()
+      setTimeout(() => flashLights(), 1000);
+      setTimeout(() => animateHalfLights(), 2000);
+      break;
+    default:
+      break;
+  }
+}
+
+let lightAnimation = setInterval(()=> {
+  if(shouldAnimateLights){fullAnimation()}
+  }, 20000)
