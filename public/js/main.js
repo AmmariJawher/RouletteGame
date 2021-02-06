@@ -4,6 +4,7 @@ const combi = document.getElementById("combi");
 const cotesMax = document.getElementById("cotesMax");
 const cotesMin = document.getElementById("cotesMin");
 const maxGain = document.getElementById("maxGain");
+const totalMaxGain = document.getElementById("totalMaxGain");
 const minGain = document.getElementById("minGain");
 const selection = document.getElementById("Selection");
 const choice = document.querySelectorAll(".choice");
@@ -242,6 +243,7 @@ function updateGain() {
   ticket.minGain = ticket.cotesMin * Number(ticket.gr);
   ticket.maxGain = ticket.cotesMax * Number(ticket.gr);
   maxGain.innerText = ticket.maxGain;
+  totalMaxGain.innerText = ticket.maxGain;
   minGain.innerText = ticket.minGain;
 }
 
@@ -249,12 +251,14 @@ function updateGain() {
 const print = document.getElementById("print")
 print.addEventListener("click", () => {
   axios.get('http://localhost:8000/event')
-  .then(res => {uploadTicket(res.data.eventId)})
+  .then(res => {
+    uploadTicket(res.data.eventId)
+    //resetConfig()
+  })
   .catch(err => {console.log(err)})
 })
 
 function uploadTicket(id) {
-  const options = {day:"2-digit", month:"2-digit", year:"2digit", hour:"2digit"}
   ticket.eventId = id
   axios.post('http://localhost:8000/ticket', ticket)
   .then(res => {
@@ -275,15 +279,16 @@ function uploadTicket(id) {
     let hours = date.getHours().toString()
     let minutes = date.getMinutes().toString()
     var ticketWindow = window.open("","wildebeast","width=300,height=500,scrollbars=1,resizable=1")
-         
+    
     var  ticketHtml = `<!DOCTYPE html><html lang="en"><head><link rel="stylesheet" href="printStyle.css"><script src="JsBarcode.all.min.js"></script></head><body><button id="btnPrint" class="hidden-print">Print</button><div class=ticket><div class=centered><h2 id=logo>&lt;Logo&gt;</h2><span id=adresse>Boutique Sbikha01 - ${formatDate()} ${hours.length === 1? "0" + hours: hours}:${minutes.length === 1? "0" + minutes: minutes}<br><span>Ticket ${res.data.ticketId}</span></div><div id="Bar" class="centered"><svg id="barcode"></svg></div><div class=flex-container><div class=flex-item><div>GR: ${ticket.gr}</div><div>Gain min/max</div></div><div class="flex-item right"><div>${ticket.combi} X ${ticket.gr} TND = ${ticket.mise} TND</div><p>${ticket.minGain} / ${ticket.maxGain} TND</span></div></div><div class=lineDashed></div>`
     ticket.choiceList.forEach((e, i) => {
       ticketHtml += `<div id=ChoiceList><div><p class=gameTitle>${res.data.eventId} Spin&Win<div class=flex-container><div class=flex-item><p class=gameInfo>19:32 ${ticketConfig(ticket.choiceList[i].choice)}</div><div class="flex-item right"><p class=Coutes>${ticket.choiceList[i].cotes}</div></div><div class=lineDotted>.............</div></div></div>`
     })
     ticketHtml += `<div class=lineDashed></div></div><div class="flex-container result ticket"><div class=flex-item><div>Mise Totale</div><div>Gain min/max</div></div><div class="flex-item right"><div>${ticket.mise} TND</div><div>${ticket.minGain} / ${ticket.maxGain} TND</div></div></div><script src=print.js></script>`
-
+    
     ticketWindow.document.open()
     ticketWindow.document.write(ticketHtml)
+    resetConfig()
     ticketWindow.document.close()
   })
   .catch(err => {console.log(err)})
