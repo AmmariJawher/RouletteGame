@@ -1,7 +1,8 @@
 const centerColor = document.getElementById("sawCenterColor")
 const centerText = document.getElementById("sawCenterText")
+const center = document.querySelector(".saw-wheel-container-pointer")
 const sawSector = document.getElementById("sawSector")
-const wheel = document.getElementById("saw-wheel-bg")
+const wheel = document.querySelector("#saw-wheel-bg")
 const timerText = document.querySelector(".saw-next-game-counter")
 const timerBar = document.querySelector(".announcement")
 const pointer = document.querySelector("#saw-wheel-top-pointer")
@@ -33,10 +34,30 @@ function lastEventNum(data) {
   .catch(err => {console.log(err)})
 }
 
+// Hot and Cold
+function indexOfMax(arr) {
+  if (arr.length === 0) {
+      return -1;
+  }
+  var max = arr[0];
+  var maxIndex = 0;
+
+  for (var i = 1; i < arr.length; i++) {
+      if (!result.includes(i) && arr[i] > max) {
+          maxIndex = i;
+          max = arr[i];
+      }
+  }
+  result.push(maxIndex)
+  return result;
+}
+hotArr = document.querySelector(".hot-cold").children[1].childNodes
+
 function biggestFiveNumbers(arr, count) {
   let result = []
+  let Hisory = document.querySelectorAll(".saw-history-row")
   for (let i = 0; i < count; i++) {
-    let max = Math.max(...arr);    
+    let max = Math.max(...arr);
   }
 }
 
@@ -394,12 +415,41 @@ function spin() {
   spinAngle = 10
   spinDest = 0; 
   spinDestTotal = 360 * 15; // aka Spining Speed
-  rotateWheel();
+  let counter = 0
+  // Rotate in the opposite direction before rotating the wheel
+  center.dataset.finish = "progress"
+  setTimeout(()=> {
+    let rotateBackward = setInterval(() => {
+      currentDegree = wheel.style.rotate.substring(0, wheel.style.rotate.length -3)
+      wheel.style.rotate = (currentDegree - 0.2)+"deg"
+  
+      counter += 30 
+      if (counter > 700) {counter = 0; clearInterval(rotateBackward); rotateWheel()}
+    }, 30);
+  }, 2000)
 }
 
 let target = 3;
-const rotateWheel = function() {
-  spinDest += 20; // aka Spin Duration
+const rotateWheel = function(a) {
+  switch (wheel.dataset.style) {
+    case "wood":
+      wheel.style.backgroundImage = "url(public/images/wheel_gold_blur_deluxe.e7e787df9dc69ac.png)"
+      break;
+    case "carpet":
+      wheel.style.backgroundImage = "url(public/images/wheel_wood_blur_deluxe.7022eab71a0c2de.png)"
+      break;
+    case "chrome":
+      wheel.style.backgroundImage = "url(public/images/wheel_blur_deluxe.466dfefb796e7ef.png)"
+      break;
+    default:
+      break;
+  }
+  wheel.style.backgroundImage = "url(public/images/wheel_gold_blur_deluxe.e7e787df9dc69ac.png)"
+  clearInterval(a)
+  spinDest += 10; // aka Spin Duration
+  if((spinDest/spinDestTotal) > 0.6) {
+    wheel.style.removeProperty("background-image")
+  }
   if(spinDest >= spinDestTotal) {
     stopRotateWheel(target);
     return;
@@ -418,6 +468,7 @@ const rotateWheel = function() {
 
 function stopRotateWheel(target) {
   clearTimeout(spinTimeout);
+  center.dataset.finish = "finish"
   spinDest = 0
   //sawSector.style.display = "block" // Show results
   pointer.style.transform = String("translateX(-50%) rotate(0deg)")
@@ -436,11 +487,13 @@ function stopRotateWheel(target) {
   }, 10000);
 }
 
+//  https://spicyyoghurt.com/tools/easing-functions
 function easeOut(t, b, c, d) {
   var ts = (t/=d)*t;
   var tc = ts*t;
   return b+c*(tc + -3*ts + 3*t);
 }
+
 
 function checkIndex() {
   let degrees = (spinAngle%360)/9.72972972973;
@@ -507,10 +560,11 @@ function flashImpairLights() {
 
 function fullAnimation() {
   let randomValue = Math.floor((Math.random() * 6) +1)
+  //randomValue = 1
   switch (randomValue) {
     case 1:
       animateLights()
-      setTimeout(() => animateLights(), 7400);
+      setTimeout(() => animateLights(), 6000);
       break;
     case 2:
       animateLights()

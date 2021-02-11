@@ -6838,7 +6838,7 @@ body {
  /*! z-index: 4; */
 }
 .saw-container[data-style=wood] #saw-wheel-top-pointer:after {
- background:url(../public/images/top-pointer_gold.67f5ae3508037bb.png) 50% no-repeat
+ background:url(../public/images/top-pointer_gold.67f5ae3508037bb.png) 50% no-repeat;
 }
 .saw-container[data-style=carpet] #saw-wheel-top-pointer:after {
  background:url(../public/images/top-pointer_wood.4a2d495171612cd.png) 50% no-repeat;
@@ -6863,6 +6863,21 @@ body {
   background-size: 71%;
 }
 
+#saw-wheel-bg-blur {
+  background-image: url(../public/images/wheel_wood_deluxe.png);
+  background-repeat: no-repeat;
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-position: 50%;
+  scale: 0.976;
+  
+  background-size: 71%;
+  z-index: -1;
+}
 #saw-wheel-sectors {
   /*! display: none; */
   /*! z-index: 2; */
@@ -6880,6 +6895,21 @@ body {
 
 .saw-container[data-style=carpet] #saw-wheel-bg {
   background-image: url(../public/images/wheel_wood_deluxe.png);
+  background-repeat: no-repeat
+}
+
+.saw-container[data-style=wood] #saw-wheel-bg-blur {
+  background-image: url(../public/images/wheel_gold_blur_deluxe.e7e787df9dc69ac.png);
+  background-repeat: no-repeat
+}
+
+.saw-container[data-style=chrome] #saw-wheel-bg-blur {
+  background-image: url(../public/images/wheel_blur_deluxe.466dfefb796e7ef.png);
+  background-repeat: no-repeat;
+}
+
+.saw-container[data-style=carpet] #saw-wheel-bg-blur {
+  background-image: url(../public/images/wheel_wood_blur_deluxe.7022eab71a0c2de.png);
   background-repeat: no-repeat
 }
 
@@ -6915,6 +6945,19 @@ body {
 
 .saw-container[data-style=wood] {
   background: radial-gradient(circle at 46%, rgba(87, 87, 81, 0) 0, #000 80%), url(../public/images/bg-pattern-wood.58b29fceb551a93.jpg);
+  background-size: contain;
+}
+
+.saw-container[data-style=chromeBlur] {
+  background: url(../public/images/wheel_blur_deluxe.466dfefb796e7ef.png) 0 0/15px,radial-gradient(circle at 44%,hsla(0,0%,100%,.7) 20%,hsla(0,0%,100%,.1) 63%);
+}
+
+.saw-container[data-style=carpetBlur] {
+  background: radial-gradient(circle at 46%, rgba(87, 87, 81, 0) 30%, #000 90%), url(../public/images/bg-pattern-carpet.40664535457aaf5.jpg);
+}
+
+.saw-container[data-style=woodBlur] {
+  background: radial-gradient(circle at 46%, rgba(87, 87, 81, 0) 0, #000 80%), url(../public/images/wheel_gold_blur_deluxe.e7e787df9dc69ac.jpg);
   background-size: contain;
 }
 
