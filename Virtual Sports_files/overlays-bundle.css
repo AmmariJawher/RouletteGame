@@ -6927,12 +6927,11 @@ body {
 
 .saw-container {
   overflow: visible;
-  flex: 0 0 1920px;
   width: 2220px;
   height: 1180px;
-  /*! top: 20px; */
-  left: 0;
-  position: absolute
+  position: absolute;
+  left: 50%;
+  transform: translate(-672.165px, 10px);
 }
 
 .saw-container[data-style=chrome] {
@@ -6976,7 +6975,7 @@ body {
 .saw-event {
   position: absolute;
   bottom: 130px;
-  left: 75px;
+  left: 40px;
   font-size: 28px;
   font-weight: 700
 }
@@ -14179,7 +14178,7 @@ body {
 }
 
 .tv-content {
-  transform-origin: left top !important
+  transform-origin: left top !important;
 }
 
 .scroll-info-container {

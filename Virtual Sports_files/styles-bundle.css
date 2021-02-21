@@ -11,7 +11,7 @@ wv-core-channels-list-channelhtml {
 }
 
 .wv-body * {
-  /*! box-sizing: border-box */
+  box-sizing: border-box;
 }
 
 .wv-app {

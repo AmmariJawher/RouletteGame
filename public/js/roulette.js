@@ -230,7 +230,6 @@ setInterval(function() {
 
         let options = [0,26,3,35,12,28,7,29,18,22,9,31,14,20,1,33,16,24,5,10,23,8,30,11,36,13,27,6,34,17,25,2,21,4,19,15,32];
         data = res.data.result
-        console.log(data);
         target = options.indexOf(data)+1
         spin()
       })
@@ -431,7 +430,7 @@ function spin() {
 
 let target = 3;
 const rotateWheel = function(a) {
-  switch (wheel.dataset.style) {
+  switch (wheelStyle.dataset.style) {
     case "wood":
       wheel.style.backgroundImage = "url(public/images/wheel_gold_blur_deluxe.e7e787df9dc69ac.png)"
       break;
@@ -444,7 +443,7 @@ const rotateWheel = function(a) {
     default:
       break;
   }
-  wheel.style.backgroundImage = "url(public/images/wheel_gold_blur_deluxe.e7e787df9dc69ac.png)"
+  //wheel.style.backgroundImage = "url(public/images/wheel_gold_blur_deluxe.e7e787df9dc69ac.png)"
   clearInterval(a)
   spinDest += 10; // aka Spin Duration
   if((spinDest/spinDestTotal) > 0.6) {
