@@ -410,7 +410,7 @@ function spin() {
   timerText.parentElement.style.display = "none"
   timerBar.parentElement.style.display = "none"
   sawSector.style.display = "none"
-  spinAngleStart = 360 * 4 // only for easeOut function to work
+  spinAngleStart = 360 * 7 // only for easeOut function to work
   spinAngle = 10
   spinDest = 0; 
   spinDestTotal = 360 * 15; // aka Spining Speed
@@ -596,3 +596,7 @@ function fullAnimation() {
 let lightAnimation = setInterval(()=> {
   if(shouldAnimateLights){fullAnimation()}
   }, 20000)
+
+//spark history
+function sparkHistory(target) {
+}
