@@ -1,3 +1,21 @@
+/*animation*/
+.animated { 
+    animation-name: flash;
+    animation-duration: 2s; 
+    animation-fill-mode: both; 
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 10;
+} 
+
+@keyframes flash { 
+    0%, 50%, 100% {opacity: 1;} 
+    25%, 75% {opacity: 0;} 
+} 
+.flash { 
+    animation-name: flash; 
+}
+
+
 .wv-body,
 wv-core-channels-list-channelhtml {
   height: 100%

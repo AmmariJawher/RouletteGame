@@ -8,6 +8,29 @@ const timerBar = document.querySelector(".announcement")
 const pointer = document.querySelector("#saw-wheel-top-pointer")
 const lights = document.querySelectorAll(".light")
 let shouldAnimateLights = false
+const history = document.getElementById("event-history")
+const colorStat = document.getElementsByClassName("color-stat")
+// Numbers
+const numberStat = document.getElementById("number-stat")
+const zero = document.getElementById("zero")
+// Colors
+const black = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35]
+const red = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
+
+// Twelves
+const twelveStat = document.getElementsByClassName("twelves-stat")
+const colOne = [1, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36]
+const colTwo = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35]
+const colThree = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34]
+
+// Sections
+const sectionStat = document.getElementsByClassName("section-stat")
+const sectionA = [2, 21, 4, 19, 15, 32]
+const sectionB = [13, 27, 6, 34, 17, 25]
+const sectionC = [10, 23, 8, 30, 11, 36]
+const sectionD = [20, 1, 33, 16, 5, 24]
+const sectionE = [29, 18, 22, 9, 31, 14]
+const sectionF = [7, 28, 12, 35, 3, 26]
 
 function getAllEvents() {
   axios.get('http://localhost:8000/events')
@@ -26,7 +49,7 @@ function getEvent(param) {
 function lastEventNum(data) {
   const eventCounter = document.getElementById("event-counter")
   eventCounter.innerText = data.eventId+1
-  let options = [0,26,3,35,12,28,7,29,18,22,9,31,14,20,1,33,16,24,5,10,23,8,30,11,36,13,27,6,34,17,25,2,21,4,19,15,32,0];
+  
   axios.post('http://localhost:8000/event', {
     result: Math.floor((Math.random() * 36)+1)
   })
@@ -67,7 +90,6 @@ function updateStats(data) {
   // Create a new array and fill it's blunk with 0
   let results = Array.apply(null, Array(37)).map(function () {return 0})
   // Update History
-  const history = document.getElementById("event-history")
   history.innerHTML = ''
   data.forEach((element, index) => {
     if (index < 9 && index !== 0) {
@@ -80,32 +102,22 @@ function updateStats(data) {
     results[element.result] += 1
   });
 
-  // Numbers
-  const numberStat = document.getElementById("number-stat")
-  const zero = document.getElementById("zero")
   numberStat.innerHTML = ('<div class="saw-history-col"></div>'.repeat(3))
   // Colors
-  const colorStat = document.getElementsByClassName("color-stat")
-  const black = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35]
-  const red = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
   colorStat[0].innerHTML = 0
   colorStat[1].innerHTML = 0
   colorStat[2].innerHTML = 0
-
   // Twelves
-  const twelveStat = document.getElementsByClassName("twelves-stat")
-  const colOne = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36]
-  const colTwo = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35]
-  const colThree = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34]
-
+  twelveStat[0].innerHTML = 0
+  twelveStat[1].innerHTML = 0
+  twelveStat[2].innerHTML = 0
   // Sections
-  const sectionStat = document.getElementsByClassName("section-stat")
-  const sectionA = [2, 21, 4, 19, 15, 32]
-  const sectionB = [13, 27, 6, 34, 17, 25]
-  const sectionC = [10, 23, 8, 30, 11, 36]
-  const sectionD = [20, 1, 33, 16, 5, 24]
-  const sectionE = [29, 18, 22, 9, 31, 14]
-  const sectionF = [7, 28, 12, 35, 3, 26]
+  sectionStat[0].innerHTML = 0
+  sectionStat[1].innerHTML = 0
+  sectionStat[2].innerHTML = 0
+  sectionStat[3].innerHTML = 0
+  sectionStat[4].innerHTML = 0
+  sectionStat[5].innerHTML = 0
 
   results.forEach((element, index) => {
     // Update Number
@@ -158,8 +170,6 @@ function updateStats(data) {
       sectionStat[5].innerHTML = Number(sectionStat[5].innerHTML)+element
     }
    })
-  const h = document.getElementsByClassName("")
-  const hi = document.getElementsByClassName("")
 }
 
 let options = [0,26,3,35,12,28,7,29,18,22,9,31,14,20,1,33,16,24,5,10,23,8,30,11,36,13,27,6,34,17,25,2,21,4,19,15,32,0];
@@ -465,14 +475,21 @@ const rotateWheel = function(a) {
   spinTimeout = setTimeout('rotateWheel()', 30);
 }
 
-function stopRotateWheel(target) {
+function stopRotateWheel(param) {
   clearTimeout(spinTimeout);
   center.dataset.finish = "finish"
   spinDest = 0
   //sawSector.style.display = "block" // Show results
   pointer.style.transform = String("translateX(-50%) rotate(0deg)")
   document.getElementById("sawSectorValue").innerHTML = options[checkIndex()]
-  getEvent(target)
+  getEvent(param)
+  setTimeout(() => {
+    runFalshAnimation(target)
+  }, 2000);
+  setTimeout(() => {
+    pauseFalshAnimation(target)  
+  }, 10000);
+  console.log(target);
   flashLights()
   setTimeout(() => flashLights(), 700);
   setTimeout(() => flashLights(), 1400);
@@ -597,6 +614,98 @@ let lightAnimation = setInterval(()=> {
   if(shouldAnimateLights){fullAnimation()}
   }, 20000)
 
-//spark history
-function sparkHistory(target) {
+//flash history
+function pauseFalshAnimation(result) {
+  let target = options[result-1]
+  console.log(options[result-1]);
+  history.children[0].children[0].classList.remove("animated")
+  // Update Number
+  if (target == 0 || target == 37) {
+    zero.classList.remove("animated")
+  } else if(target < 13) {
+    numberStat.childNodes[0].childNodes[target-1].children[1].children[0].classList.remove("animated")
+  } else if(target < 25) {
+    numberStat.childNodes[1].childNodes[target-13].children[1].children[0].classList.remove("animated")
+  } else {
+    numberStat.childNodes[2].childNodes[target-25].children[1].children[0].classList.remove("animated")
+  }
+  // Update Colors
+  if (red.includes(target)) {
+    colorStat[0].classList.remove("animated")
+  } else if(black.includes(target)) {
+    colorStat[1].classList.remove("animated")
+  } else {
+    colorStat[2].classList.remove("animated")
+  }
+
+  // Update Twelves
+  if (target < 16) {
+    twelveStat[0].classList.remove("animated")
+  } else if(target < 25) {
+    twelveStat[1].classList.remove("animated")
+  } else {
+    twelveStat[2].classList.remove("animated")
+  }
+
+  // Update Sections
+  if (sectionA.includes(target)) {
+    sectionStat[0].classList.remove("animated")
+  } else if(sectionB.includes(target)) {
+    sectionStat[1].classList.remove("animated")
+  } else if (sectionC.includes(target)){
+    sectionStat[2].classList.remove("animated")
+  } else if (sectionD.includes(target)){
+    sectionStat[3].classList.remove("animated")
+  } else if (sectionE.includes(target)){
+    sectionStat[4].classList.remove("animated")
+  } else if (sectionF.includes(target)){
+    sectionStat[5].classList.remove("animated")
+  }
+}
+
+function runFalshAnimation(result) {
+  let target = options[result-1]
+  history.children[0].children[0].classList.add("animated")
+  // Update Number
+  if (target == 0 || target == 37) {
+    zero.classList.add("animated")
+  } else if(target < 13) {
+    numberStat.childNodes[0].childNodes[target-1].children[1].children[0].classList.add("animated")
+  } else if(target < 25) {
+    numberStat.childNodes[1].childNodes[target-13].children[1].children[0].classList.add("animated")
+  } else {
+    numberStat.childNodes[2].childNodes[target-25].children[1].children[0].classList.add("animated")
+  }
+  // Update Colors
+  if (red.includes(target)) {
+    colorStat[0].classList.add("animated")
+  } else if(black.includes(target)) {
+    colorStat[1].classList.add("animated")
+  } else {
+    colorStat[2].classList.add("animated")
+  }
+
+  // Update Twelves
+  if (target < 16) {
+    twelveStat[0].classList.add("animated")
+  } else if(target < 25) {
+    twelveStat[1].classList.add("animated")
+  } else {
+    twelveStat[2].classList.add("animated")
+  }
+
+  // Update Sections
+  if (sectionA.includes(target)) {
+    sectionStat[0].classList.add("animated")
+  } else if(sectionB.includes(target)) {
+    sectionStat[1].classList.add("animated")
+  } else if (sectionC.includes(target)){
+    sectionStat[2].classList.add("animated")
+  } else if (sectionD.includes(target)){
+    sectionStat[3].classList.add("animated")
+  } else if (sectionE.includes(target)){
+    sectionStat[4].classList.add("animated")
+  } else if (sectionF.includes(target)){
+    sectionStat[5].classList.add("animated")
+  }
 }
