@@ -58,32 +58,46 @@ function lastEventNum(data) {
 }
 
 // Hot and Cold
-function indexOfMax(arr) {
-  if (arr.length === 0) {
-      return -1;
-  }
-  var max = arr[0];
-  var maxIndex = 0;
+historyHot = document.querySelector(".hot-cold").children[1]
+historyCold = document.querySelector(".hot-cold").children[2]
 
-  for (var i = 1; i < arr.length; i++) {
-      if (!result.includes(i) && arr[i] > max) {
-          maxIndex = i;
-          max = arr[i];
-      }
-  }
-  result.push(maxIndex)
-  return result;
-}
-hotArr = document.querySelector(".hot-cold").children[1].childNodes
+function updateHotCold(arr) {
+  historyHot.innerHTML = `<div class=\"saw-history-block-hot\">CHAUD</div>`
+  findMaxFiveNum(arr).forEach((element)=>{
+    historyHot.innerHTML += `<div class=\"saw-history-block\" style=\"background:${getGradient(element)}\">
+    <span>${element}</span></div>`
+  })
+  historyCold.innerHTML = `<div class=\"saw-history-block-cold\">FROID</div>`
+  findMinFiveNum(arr).forEach((element)=>{
+    console.log(element);
+    historyCold.innerHTML += `<div class=\"saw-history-block\" style=\"background:${getGradient(element)}\">
+    <span>${element}</span></div>`
+  })
 
-function biggestFiveNumbers(arr, count) {
-  let result = []
-  let Hisory = document.querySelectorAll(".saw-history-row")
-  for (let i = 0; i < count; i++) {
-    let max = Math.max(...arr);
-  }
 }
 
+
+function findMaxFiveNum(param){
+  let maxArray = []
+  let newArr = param.slice()
+  for (let i = 0; i < 5; i++) {
+  max = Math.max.apply(null, newArr)
+  maxArray.push(newArr.indexOf(max))
+  newArr[newArr.indexOf(max)] = 0
+	}
+  return maxArray
+}
+
+function findMinFiveNum(param){
+  let minArray = []
+  let newArr = param.slice()
+  for (let i = 0; i < 5; i++) {
+  min = Math.min.apply(null, newArr)
+  minArray.push(newArr.indexOf(min))
+  newArr[newArr.indexOf(min)] = 120
+	}
+  return minArray
+}
 getAllEvents()
 
 function updateStats(data) {
@@ -170,6 +184,7 @@ function updateStats(data) {
       sectionStat[5].innerHTML = Number(sectionStat[5].innerHTML)+element
     }
    })
+   updateHotCold(results)
 }
 
 let options = [0,26,3,35,12,28,7,29,18,22,9,31,14,20,1,33,16,24,5,10,23,8,30,11,36,13,27,6,34,17,25,2,21,4,19,15,32,0];
