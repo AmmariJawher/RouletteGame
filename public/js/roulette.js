@@ -435,8 +435,8 @@ function spin() {
   timerText.parentElement.style.display = "none"
   timerBar.parentElement.style.display = "none"
   sawSector.style.display = "none"
-  spinAngleStart = 360 * 7 // only for easeOut function to work
-  spinAngle = 10
+  spinAngleStart = 360 * 9 // only for easeOut function to work
+  spinAngle = 50
   spinDest = 0; 
   spinDestTotal = 360 * 15; // aka Spining Speed
   let counter = 0
@@ -483,7 +483,7 @@ const rotateWheel = function(a) {
   wheel.style.rotate = String(spinAngle+"deg")
   pointerAngle = ((target - 1) * 9.8) + easeOut(spinDest, 0, spinAngleStart,spinDestTotal)*4;
   
-  pointer.style.transform = String("translateX(-50%) rotate(-"+(pointerAngle%43)+"deg)")
+  pointer.style.transform = String("translateX(-50%) rotate(-"+(pointerAngle%50)+"deg)")
   let text = options[checkIndex()]
   centerColor.style.fill = getColor(text)
   centerText.innerHTML = text
