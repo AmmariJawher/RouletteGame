@@ -370,7 +370,7 @@ table th {
     text-align: inherit; }
 
 table th {
-  color: #363636; }
+  /*! color: #363636; */ }
 
 /* Bulma Elements */
 .box {
@@ -1744,7 +1744,7 @@ a.box:active {
 
 .table {
   background-color: white;
-  color: #363636; }
+  color: #000; }
   .table td,
   .table th {
     border: 1px solid #dbdbdb;
@@ -1757,10 +1757,11 @@ a.box:active {
       border-color: white;
       color: #0a0a0a; }
     .table td.is-black,
-    .table th.is-black {
+    .table th.is-black,
+    .table tr.is-black {
       background-color: #0a0a0a;
-      border-color: #0a0a0a;
-      color: white; }
+      border-color: #fff;
+      color: #fff !important; }
     .table td.is-light,
     .table th.is-light {
       background-color: whitesmoke;
@@ -1818,7 +1819,7 @@ a.box:active {
     .table th.is-vcentered {
       vertical-align: middle; }
   .table th {
-    color: #363636; }
+    /*! color: 0a0a0a; */ }
     .table th:not([align]) {
       text-align: inherit; }
   .table tr.is-selected {
@@ -1836,7 +1837,7 @@ a.box:active {
     .table thead td,
     .table thead th {
       border-width: 0 0 2px;
-      color: #363636; }
+      /*! color: #0a0a0a; */ }
   .table tfoot {
     background-color: transparent; }
     .table tfoot td,
@@ -1856,8 +1857,10 @@ a.box:active {
     border-bottom-width: 1px; }
   .table.is-fullwidth {
     width: 100%; }
-  .table.is-hoverable tbody tr:not(.is-selected):hover {
+  .table.is-hoverable tbody td:not(.is-selected) :hover {
     background-color: #fafafa; }
+   .table.is-hoverable tbody tr.is-black:not(.is-selected):hover {
+    background-color: #333333; }
   .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover {
     background-color: #fafafa; }
     .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even) {
@@ -4536,7 +4539,7 @@ label.panel-block {
     border-bottom-color: #dbdbdb;
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    color: #4a4a4a;
+    color: white;
     display: flex;
     justify-content: center;
     margin-bottom: -1px;
@@ -4548,8 +4551,8 @@ label.panel-block {
   .tabs li {
     display: block; }
     .tabs li.is-active a {
-      border-bottom-color: #3273dc;
-      color: #3273dc; }
+      border-bottom-color: #f14668;
+      color: #f14668; }
   .tabs ul {
     align-items: center;
     border-bottom-color: #dbdbdb;
@@ -4603,14 +4606,14 @@ label.panel-block {
   .tabs.is-toggle li + li {
     margin-left: -1px; }
   .tabs.is-toggle li:first-child a {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px; }
+    /*! border-top-left-radius: 4px; */
+    /*! border-bottom-left-radius: 4px; */ }
   .tabs.is-toggle li:last-child a {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px; }
+    /*! border-top-right-radius: 4px; */
+    /*! border-bottom-right-radius: 4px; */ }
   .tabs.is-toggle li.is-active a {
-    background-color: #3273dc;
-    border-color: #3273dc;
+    background-color: #f14668;
+    border-color: #f14668;
     color: #fff;
     z-index: 1; }
   .tabs.is-toggle ul {
@@ -5820,7 +5823,7 @@ label.panel-block {
   color: white !important; }
 
 a.has-text-white:hover, a.has-text-white:focus {
-  color: #e6e6e6 !important; }
+  color: hsl(0, 0%, 14%) !important; }
 
 .has-background-white {
   background-color: white !important; }
@@ -6027,7 +6030,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   background-color: #242424 !important; }
 
 .has-text-grey-darker {
-  color: #363636 !important; }
+  /*! color: #363636 !important; */ }
 
 .has-background-grey-darker {
   background-color: #363636 !important; }

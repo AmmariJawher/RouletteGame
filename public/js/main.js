@@ -79,15 +79,15 @@ function updateHistory(arr) {
   }
   function checkBgColor(stat) {
     if (stat === false) {
-      return 'has-background-danger-light has-text-danger'
+      return 'has-background-danger-dark has-text-white'
     }else if(stat === true) {
-      return 'has-text-success has-background-success-light'
+      return 'has-text-white has-background-success-dark'
     }else{
       return ''
     }
   }
-  arr.forEach(ticket => {
-    historyContent.innerHTML += '<tr><td onclick="showModal(\'historyModal\',\''+ticket.ticketId+'\')"><ion-icon name="information-outline"></ion-icon></td><td>'+
+  arr.forEach(ticket => {  
+    historyContent.innerHTML += '<tr class="is-black"><td onclick="showModal(\'historyModal\',\''+ticket.ticketId+'\')"><span class="icon has-text-info is-size-5 has-background-black"><ion-icon name="eye-outline"></ion-icon></span></td><td>'+
     ticket.ticketId+'</td><td> DT</td><td class="'+checkBgColor(ticket.status)+'">'+checkResult(ticket.status)+'</td></tr>'
   });
 }
@@ -163,7 +163,7 @@ for (let i = 0; i < choice.length; i++) {
     updateMise()
     updateCotes(ticket.choiceList)
     updateGain()
-    selection.innerHTML += "<tr><td>" + String(ticket.choiceList[ticket.choiceList.length - 1].choice) + "</td><td>" + String(ticket.choiceList[ticket.choiceList.length - 1].cotes) + "</td><td onclick='removeSelect(event)'><ion-icon name='close-outline'></ion-icon></td></tr>";
+    selection.innerHTML += "<tr class='is-black'><td>" + String(ticket.choiceList[ticket.choiceList.length - 1].choice) + "</td><td>" + String(ticket.choiceList[ticket.choiceList.length - 1].cotes) + "</td><td onclick='removeSelect(event)'><span class='icon has-text-danger is-size-5 has-background-black'><ion-icon name='close-outline'></ion-icon></span></td></tr>";
   });
 }
 

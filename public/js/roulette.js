@@ -224,7 +224,7 @@ setInterval(function() {
   // If the count down is over, write some text
     if (timer <= 0) {
       timerBar.style.transition = "none"
-      timerBar.style.height = "879px"
+      timerBar.style.height = "550px"
       axios.get('http://localhost:8000/event')
       .then(res => {
         let result = res.data.result
@@ -264,7 +264,7 @@ setInterval(function() {
   } else if (shouldCount) {
     timer-= 1000
     if (timer <= 60000) {
-      timerBar.style.height = String(879 * timer/60000) + "px"
+      timerBar.style.height = String(550 * timer/60000) + "px"
       switch (timer) {
         case 30000:
           timerBar.style.background = "#cace40"
@@ -481,9 +481,10 @@ const rotateWheel = function(a) {
   // Center Rotaion is 9.72972972973
   spinAngle = ((target - 1) * 9.8) + easeOut(spinDest, 0, spinAngleStart,spinDestTotal);
   wheel.style.rotate = String(spinAngle+"deg")
-  pointerAngle = ((target - 1) * 9.8) + easeOut(spinDest, 0, spinAngleStart,spinDestTotal)*4;
-  
-  pointer.style.transform = String("translateX(-50%) rotate(-"+(pointerAngle%50)+"deg)")
+  /*
+  pointerAngle = ((target - 1) * 9.8) + easeOut(spinDest, 0, spinAngleStart,spinDestTotal)/4; // dvide by 37  
+  pointer.style.transform = String("translateX(-50%) rotate(-"+(pointerAngle%45)+"deg)")
+  */
   let text = options[checkIndex()]
   centerColor.style.fill = getColor(text)
   centerText.innerHTML = text

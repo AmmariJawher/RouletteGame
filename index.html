@@ -9,10 +9,61 @@
 </head>
 
 <body>
-  <div class="">
-    <button onclick="showModal('adminModal')">Admin</button>
+  <div class="has-background-dark">
     <div class="columns">
       <div class="column">
+        <nav class="navbar is-black" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="https://xbet.de/">
+              <img src="https://xbet.de/wp-content/uploads/2017/02/xbet-Logo_negativ_kl.png" width="112" height="28">
+            </a>
+        
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+        
+          <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+              <a class="navbar-item">
+                Home
+              </a>
+        
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  More
+                </a>
+        
+                <div class="navbar-dropdown">
+                  <a class="navbar-item" onclick="showModal('incomeModal')">
+                    <span class="icon is-small"><ion-icon name="calculator-outline"></ion-icon></span>
+                    <span>Calculator</span>
+                  </a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item">
+                    Report an issue
+                  </a>
+                </div>
+              </div>
+            </div>
+        
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <a class="button is-danger">
+                    <strong>Initial: 850 TND</strong>
+                  </a>
+                  <a class="button is-light" onclick="showModal('adminModal')">
+                    <span class="icon is-small"><ion-icon name="stats-chart-outline"></ion-icon></span>
+                    <span>Admin</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
         <section class="columns">
           <div class="column numGrid m-2">
             <div class="choice num r">1</div>
@@ -53,24 +104,24 @@
             <div class="choice num r">36</div>
           </div>
           <div class="column">
-            <h4 class="subtitle is-5 my-1">COULEUR</h4>
+            <h4 class="subtitle is-5 my-1 has-text-white">COULEUR</h4>
             <section class="sectorGrid">
               <div class="choice black" value="black">NOIR</div>
               <div class="choice red" value="red">ROUGE</div>
               <div class="choice zero">VERT</div>
             </section>
-            <h4 class="subtitle is-5 my-1">DOUZAINE</h4>
+            <h4 class="subtitle is-5 my-1 has-text-white">DOUZAINE</h4>
             <section class="sectorGrid">
               <div class="choice ratio" value="first">1-12</div>
               <div class="choice ratioTwo" value="second">13-24</div>
               <div class="choice ratioThree" value="third">25-36</div>
             </section>
-            <h4 class="subtitle is-5 my-1">PAIR/IMPAIR</h4>
+            <h4 class="subtitle is-5 my-1 has-text-white">PAIR/IMPAIR</h4>
             <section class="sectorGrid">
               <div class="choice even" value="even">PAIR</div>
               <div class="choice odd" value="odd">IMPAIR</div>
             </section>
-            <h4 class="subtitle is-5 my-1">SECTOR</h4>
+            <h4 class="subtitle is-5 my-1 has-text-white">SECTOR</h4>
             <section class="sectorGrid">
               <div class="choice col" value="sectorA">A</div>
               <div class="choice col" value="sectorB">B</div>
@@ -82,8 +133,8 @@
           </div>
         </section>
       </div>
-      <div class="column is-one-quarter">
-        <div class="tabs is-fullwidth">
+      <div class="column is-one-quarter has-background-black has-text-white">
+        <div class="tabs is-fullwidth has-background-black">
           <ul>
             <li class="tablinks" onclick="openTab(event, 'Info')">
               <a>
@@ -100,9 +151,9 @@
         
         <section class="is-size-7 tabcontent is-block" id="History">
           <div class="table-container" style="overflow-y: scroll; height: 500px;">
-            <table class="table is-fullwidth is-bordered is-striped is-narrow is-hoverable">
+            <table class="table is-fullwidth is-bordered is-narrow is-hoverable has-text-white">
               <thead>
-                <tr>
+                <tr class="">
                   <th></th>
                   <th>Coupon Nr.</th>
                   <th>Pari</th>
@@ -175,7 +226,7 @@
         </section>
 
         <div class="modal" id="adminModal">
-          <div class="modal-background" onclick="hideModal('adminModal')"></div>
+          <div class="modal-background has" click="hideModal('adminModal')"></div>
           <div class="modal-card" id="admin-modal-card">
             <header class="modal-card-head">
               <button class="delete" aria-label="close" onclick="hideModal('adminModal')"></button>
@@ -225,15 +276,91 @@
             </section>
           </div>
         </div>
+        <div class="modal" id="incomeModal">
+          <div class="modal-background" onclick="hideModal('incomeModal')"></div>
+          <div class="modal-card" id="admin-modal-card">
+            <header class="modal-card-head">
+              <button class="delete" aria-label="close" onclick="hideModal('incomeModal')"></button>
+            </header>
+            <section class="modal-card-body">
+              <div class="field is-horizontal is-justify-content-flex-start">
+                <div class="field-label is-normal">
+                  <label class="label">From</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input" type="text" placeholder="Day">
+                    </p>
+                  </div>
+                  <div class="field">
+                    <p class="control is-expanded">
+                      <div class="select">
+                        <select>
+                          <option>January</option>
+                          <option>February</option>
+                          <option>March</option>
+                          <option>April</option>
+                          <option>May</option>
+                          <option>June</option>
+                          <option>July</option>
+                          <option>August</option>
+                          <option>September</option>
+                          <option>October</option>
+                          <option>November</option>
+                          <option>December</option>
+                        </select>
+                      </div>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal is-justify-content-flex-start">
+                <div class="field-label is-normal">
+                  <label class="label">To</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input" type="text" placeholder="Day">
+                    </p>
+                  </div>
+                  <div class="field">
+                    <p class="control is-expanded">
+                      <div class="select">
+                        <select>
+                          <option>January</option>
+                          <option>February</option>
+                          <option>March</option>
+                          <option>April</option>
+                          <option>May</option>
+                          <option>June</option>
+                          <option>July</option>
+                          <option>August</option>
+                          <option>September</option>
+                          <option>October</option>
+                          <option>November</option>
+                          <option>December</option>
+                        </select>
+                      </div>
+                    </p>
+                  </div>
+                </div>
+              </div>  
+              <button class="button is-primary" onclick="getEventId()">Update Chart</button>
+            </section>
+          </div>
+        </div>
         <section class="is-size-7 tabcontent is-block" id="History">
           
         </section>
 
         <section class="is-size-7 tabcontent is-block" id="Info">
           <div class="table-container" style="overflow-y: scroll; height: 210px;">
-            <table class="table is-fullwidth is-bordered is-striped is-narrow is-hoverable">
+            <table class="table is-fullwidth is-bordered is-narrow is-hoverable">
               <thead>
-                <tr>
+                <tr class="is-black">
                   <th>Selection</th>
                   <th>Coutes</th>
                   <th></th>
@@ -277,7 +404,7 @@
           <div class="table-container">
             <table class="table is-fullwidth is-bordered is-striped is-narrow">
               <thead>
-                <tr>
+                <tr class="is-black">
                   <th>Combi</th>
                   <th>Max</th>
                   <th>Min</th>
@@ -285,7 +412,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr class="is-black">
                   <td id="combi">0</td>
                   <td id="cotesMax">-</td>
                   <td id="cotesMin">-</td>
@@ -295,15 +422,15 @@
             </table>
           </div>
 
-          <table class="table is-fullwidth has-background-grey-lighter is-narrow">
+          <table class="table is-fullwidth has-text-grey-darker is-narrow">
             <thead>
-              <tr>
+              <tr class="is-black">
                 <th>Gain potential MAX</th>
                 <td id="maxGain">0</td>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr class="is-black">
                 <th>Gain potential MIN</th>
                 <td id="minGain">0</td>
               </tr>
@@ -313,28 +440,29 @@
           <div class="table-container">
             <table class="table is-fullwidth is-narrow">
               <tbody>
-                <tr>
+                <tr class="is-black">
                   <th>Mise totale:</th>
                   <td id="mise">1</td>
                 </tr>
-                <tr>
+                <tr class="is-black">
                   <th>Gain total Max:</th>
                   <td id="totalMaxGain">0</td>
                 </tr>
               </tbody>
             </table>
           </div>
+          
           <div class="tabs is-toggle is-fullwidth">
             <ul>
-              <li class="has-background-danger has-text-black" onclick="resetConfig()">
+              <li class="" onclick="resetConfig()">
                 <a>
-                  <span class="icon is-small "><i class="fas fa-image" aria-hidden="true"></i></span>
+                  <span class="icon is-small "><ion-icon name="refresh-outline"></ion-icon></span>
                   <span>Reset</span>
                 </a>
               </li>
-              <li class="has-text-black has-background-success">
+              <li class="is-active has-background-black">
                 <a id="print">
-                  <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+                  <span class="icon is-small"><ion-icon name="print-outline"></ion-icon></span>
                   <span>Print</span>
                 </a>
               </li>
@@ -343,11 +471,16 @@
         </section>
       </div>
     </div>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>THis is Test</p>
+      </div>
+    </footer>
   </div>
   <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script> 
   <script src="public/js/print.js"></script>
-  <script src="Chart.min.js"></script>
-  <script src="./chart.js"></script>
+  <script src="public/js/Chart.min.js"></script>
+  <script src="public/js/chart.js"></script>
   <script src="./node_modules/axios/dist/axios.min.js"></script>
   <script src="public/js/main.js" type="text/javascript"></script>
 </body>
