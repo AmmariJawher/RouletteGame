@@ -2181,6 +2181,9 @@ a.tag:hover {
   box-shadow: inset 0 0.0625em 0.125em rgba(10, 10, 10, 0.05);
   max-width: 100%;
   width: 100%; }
+.input.is-adaptable {
+  width: auto;
+}
   .input[readonly], .textarea[readonly] {
     box-shadow: none; }
   .is-white.input, .is-white.textarea {
@@ -5459,7 +5462,7 @@ label.panel-block {
   .columns:last-child {
     margin-bottom: -0.75rem; }
   .columns:not(:last-child) {
-    margin-bottom: calc(1.5rem - 0.75rem); }
+    /*! margin-bottom: calc(1.5rem - 0.75rem); */ }
   .columns.is-centered {
     justify-content: center; }
   .columns.is-gapless {
@@ -7703,7 +7706,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 
 .footer {
   background-color: #fafafa;
-  padding: 3rem 1.5rem 6rem; }
+  /*! padding: 3rem 1.5rem 6rem; */ }
 
 html, body {
   height: 100%;

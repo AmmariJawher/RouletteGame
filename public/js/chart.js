@@ -1,12 +1,22 @@
 function getEventId(){
     // get last eventId and use it to find Tickets related to it
     axios.get('http://localhost:8000/event')
-    .then(res => {getAllEvents(res.data.eventId)})
+    .then(res => {getAllTickets(res.data.eventId)})
     .catch(err => {console.log(err)})
   }
 
-function getAllEvents(Id) {
-    axios.get('http://localhost:8000/tickets', {params: {eventId: Id}})
+function getAllTickets(Id, state) {
+  let obj = null
+  switch (state) {
+    case 0:
+      obj = {eventId: Id} 
+      break;
+      
+    default:
+      obj = {eventId: Id} 
+      break;
+  }
+    axios.get('http://localhost:8000/tickets', {params: obj})
     .then(res => {updateStats(res.data)})
     .catch(err => {console.log(err)})
 }

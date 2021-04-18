@@ -6,15 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Roulette Game</title>
   <link rel="stylesheet" href="public/css/style.css">
+  <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body>
   <div class="has-background-dark">
     <div class="columns">
-      <div class="column">
+      <div class="column" style="padding-right: 0;">
         <nav class="navbar is-black" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
-            <a class="navbar-item" href="https://xbet.de/">
+            <a class="navbar-item" href="">
               <img src="https://xbet.de/wp-content/uploads/2017/02/xbet-Logo_negativ_kl.png" width="112" height="28">
             </a>
         
@@ -37,13 +39,21 @@
                 </a>
         
                 <div class="navbar-dropdown">
-                  <a class="navbar-item" onclick="showModal('incomeModal')">
-                    <span class="icon is-small"><ion-icon name="calculator-outline"></ion-icon></span>
-                    <span>Calculator</span>
+                  <a class="navbar-item" onclick="showModal('incomeModal', 1)" id="earning-button">
+                    <span class="icon is-small"><ion-icon name="cash-outline"></ion-icon></span>
+                    <span>Earnings</span>
+                  </a>
+                  <a class="navbar-item" onclick="alert('Update To Premier Membership To Get Access.')">
+                    <span class="icon is-small"><ion-icon name="analytics-outline"></ion-icon></span>
+                    <span>Analytics</span>
+                  </a>
+                  <a class="navbar-item" onclick="alert('Update To Premier Membership To Get Access.')">
+                    <span class="icon is-small"><ion-icon name="hammer-outline"></ion-icon></span>
+                    <span>Support</span>
                   </a>
                   <hr class="navbar-divider">
-                  <a class="navbar-item">
-                    Report an issue
+                  <a class="navbar-item" onclick="alert('Auto-deposits eliminate the manual process required for a one-time deposit, and instead, allows you to schedule recurring future deposits for 850 TND.')">
+                    Initial: 850 TND
                   </a>
                 </div>
               </div>
@@ -52,9 +62,19 @@
             <div class="navbar-end">
               <div class="navbar-item">
                 <div class="buttons">
-                  <a class="button is-danger">
-                    <strong>Initial: 850 TND</strong>
-                  </a>
+                  <div class="field has-addons mb-0 mr-2">
+                    <div class="control">
+                      <input id="search-ticket" class="input" type="text" placeholder="Find a ticket">
+                    </div>
+                    <div class="control">
+                      <button id="search-ticket-btn" class="button is-danger">
+                        <span class="icon">
+                          <ion-icon name="search-outline"></ion-icon>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+
                   <a class="button is-light" onclick="showModal('adminModal')">
                     <span class="icon is-small"><ion-icon name="stats-chart-outline"></ion-icon></span>
                     <span>Admin</span>
@@ -64,7 +84,7 @@
             </div>
           </div>
         </nav>
-        <section class="columns">
+        <section class="columns" style="padding-right: 5px;">
           <div class="column numGrid m-2">
             <div class="choice num r">1</div>
             <div class="choice num">2</div>
@@ -133,12 +153,12 @@
           </div>
         </section>
       </div>
-      <div class="column is-one-quarter has-background-black has-text-white">
+      <div class="column is-one-quarter has-background-black has-text-white" style="height: 100vh">
         <div class="tabs is-fullwidth has-background-black">
           <ul>
             <li class="tablinks" onclick="openTab(event, 'Info')">
               <a>
-                <span>Info</span>
+                <span>Ticket</span>
               </a>
             </li>
             <li id="history-tab" class="tablinks" onclick="openTab(event, 'History')">
@@ -150,10 +170,10 @@
         </div>
         
         <section class="is-size-7 tabcontent is-block" id="History">
-          <div class="table-container" style="overflow-y: scroll; height: 500px;">
+          <div class="table-container" style="overflow-y: scroll; height: 88vh;">
             <table class="table is-fullwidth is-bordered is-narrow is-hoverable has-text-white">
               <thead>
-                <tr class="">
+                <tr class="is-black">
                   <th></th>
                   <th>Coupon Nr.</th>
                   <th>Pari</th>
@@ -232,7 +252,7 @@
               <button class="delete" aria-label="close" onclick="hideModal('adminModal')"></button>
             </header>
             <section class="modal-card-body">
-              <button class="button is-primary" onclick="getEventId()">Update Chart</button>
+              <button class="button is-danger" onclick="getEventId()">Update Chart</button>
               <canvas id="myChart" width="150" height="50"></canvas>
               <div class="cowlumn play m-2">
                 <div class="win-choice num zero">0</div>
@@ -283,72 +303,50 @@
               <button class="delete" aria-label="close" onclick="hideModal('incomeModal')"></button>
             </header>
             <section class="modal-card-body">
-              <div class="field is-horizontal is-justify-content-flex-start">
-                <div class="field-label is-normal">
-                  <label class="label">From</label>
-                </div>
-                <div class="field-body">
-                  <div class="field">
-                    <p class="control">
-                      <input class="input" type="text" placeholder="Day">
-                    </p>
+              <!--
+
+                <div class="field is-horizontal is-justify-content-flex-start" id="fromDate">
+                  <div class="field-label is-normal">
+                    <label class="label">From</label>
                   </div>
-                  <div class="field">
-                    <p class="control is-expanded">
-                      <div class="select">
-                        <select>
-                          <option>January</option>
-                          <option>February</option>
-                          <option>March</option>
-                          <option>April</option>
-                          <option>May</option>
-                          <option>June</option>
-                          <option>July</option>
-                          <option>August</option>
-                          <option>September</option>
-                          <option>October</option>
-                          <option>November</option>
-                          <option>December</option>
-                        </select>
-                      </div>
+                  <div class="field-body">
+                    <div class="field">
+                    <p class="control">
+                      <input class="input is-adaptable date" type="text" placeholder="">
+                      <input class="input is-adaptable time" type="text" placeholder="">
                     </p>
                   </div>
                 </div>
               </div>
-
-              <div class="field is-horizontal is-justify-content-flex-start">
+              
+              <div class="field is-horizontal is-justify-content-flex-start" id="toDate">
                 <div class="field-label is-normal">
                   <label class="label">To</label>
                 </div>
                 <div class="field-body">
                   <div class="field">
-                    <p class="control">
-                      <input class="input" type="text" placeholder="Day">
-                    </p>
-                  </div>
-                  <div class="field">
                     <p class="control is-expanded">
-                      <div class="select">
-                        <select>
-                          <option>January</option>
-                          <option>February</option>
-                          <option>March</option>
-                          <option>April</option>
-                          <option>May</option>
-                          <option>June</option>
-                          <option>July</option>
-                          <option>August</option>
-                          <option>September</option>
-                          <option>October</option>
-                          <option>November</option>
-                          <option>December</option>
-                        </select>
-                      </div>
+                      <input class="input is-adaptable date" type="text" placeholder="Day">
+                      <input class="input is-adaptable time" type="text" placeholder="Day">
                     </p>
                   </div>
                 </div>
               </div>  
-              <button class="button is-primary" onclick="getEventId()">Update Chart</button>
+              <button class="button is-danger" onclick="UpdateFormDate()">Current Date</button>
+              <button class="button is-danger" onclick="UpdateFormDate()">Show Income</button>
+            -->
+              <table class="table is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Revenue</th>
+                    <th>Expenses</th>
+                    <th>Earning</th>
+                  </tr>
+                </thead>
+                <tbody id="earnings-content">
+                </tbody>
+              </table>
             </section>
           </div>
         </div>
@@ -416,7 +414,7 @@
                   <td id="combi">0</td>
                   <td id="cotesMax">-</td>
                   <td id="cotesMin">-</td>
-                  <td id="gr">1</td>
+                  <td id="gr">0</td>
                 </tr>
               </tbody>
             </table>
@@ -471,14 +469,12 @@
         </section>
       </div>
     </div>
-    <footer class="footer">
+    <footer class="footer has-background-black">
       <div class="content has-text-centered">
-        <p>THis is Test</p>
+        <p>© 2021 xbet</p>
       </div>
     </footer>
   </div>
-  <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script> 
-  <script src="public/js/print.js"></script>
   <script src="public/js/Chart.min.js"></script>
   <script src="public/js/chart.js"></script>
   <script src="./node_modules/axios/dist/axios.min.js"></script>
