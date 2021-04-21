@@ -39,7 +39,7 @@
                 </a>
         
                 <div class="navbar-dropdown">
-                  <a class="navbar-item" onclick="showModal('incomeModal', 1)" id="earning-button">
+                  <a class="navbar-item" onclick="showModal('incomeModal', 1, 50000)" id="earning-button">
                     <span class="icon is-small"><ion-icon name="cash-outline"></ion-icon></span>
                     <span>Earnings</span>
                   </a>
@@ -47,13 +47,10 @@
                     <span class="icon is-small"><ion-icon name="analytics-outline"></ion-icon></span>
                     <span>Analytics</span>
                   </a>
+                  <hr class="navbar-divider">
                   <a class="navbar-item" onclick="alert('Update To Premier Membership To Get Access.')">
                     <span class="icon is-small"><ion-icon name="hammer-outline"></ion-icon></span>
                     <span>Support</span>
-                  </a>
-                  <hr class="navbar-divider">
-                  <a class="navbar-item" onclick="alert('Auto-deposits eliminate the manual process required for a one-time deposit, and instead, allows you to schedule recurring future deposits for 850 TND.')">
-                    Initial: 850 TND
                   </a>
                 </div>
               </div>
@@ -62,18 +59,13 @@
             <div class="navbar-end">
               <div class="navbar-item">
                 <div class="buttons">
-                  <div class="field has-addons mb-0 mr-2">
-                    <div class="control">
-                      <input id="search-ticket" class="input" type="text" placeholder="Find a ticket">
-                    </div>
-                    <div class="control">
-                      <button id="search-ticket-btn" class="button is-danger">
-                        <span class="icon">
-                          <ion-icon name="search-outline"></ion-icon>
-                        </span>
-                      </button>
-                    </div>
-                  </div>
+                  
+                  <span class="mb-2 mr-5">
+                    <!--
+                      <span class="icon is-small"><ion-icon name="stats-chart-outline"></ion-icon></span>
+                    -->
+                    <span id="deposit">Deposit: 0 TND</span>
+                  </span>
 
                   <a class="button is-light" onclick="showModal('adminModal')">
                     <span class="icon is-small"><ion-icon name="stats-chart-outline"></ion-icon></span>
@@ -170,6 +162,18 @@
         </div>
         
         <section class="is-size-7 tabcontent is-block" id="History">
+          <div class="field has-addons mr-2">
+            <div class="control is-expanded">
+              <input id="search-ticket" class="input is-small" type="text" placeholder="Find a ticket">
+            </div>
+            <div class="control">
+              <button id="search-ticket-btn" class="button is-danger is-small">
+                <span class="icon">
+                  <ion-icon name="search-outline"></ion-icon>
+                </span>
+              </button>
+            </div>
+          </div>
           <div class="table-container" style="overflow-y: scroll; height: 88vh;">
             <table class="table is-fullwidth is-bordered is-narrow is-hoverable has-text-white">
               <thead>
@@ -335,7 +339,7 @@
               <button class="button is-danger" onclick="UpdateFormDate()">Current Date</button>
               <button class="button is-danger" onclick="UpdateFormDate()">Show Income</button>
             -->
-              <table class="table is-fullwidth">
+              <table class="table is-fullwidth is-bordered is-striped is-narrow is-hoverable">
                 <thead>
                   <tr>
                     <th>Date</th>
@@ -345,6 +349,12 @@
                   </tr>
                 </thead>
                 <tbody id="earnings-content">
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
                 </tbody>
               </table>
             </section>

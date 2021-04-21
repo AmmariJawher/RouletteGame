@@ -94,19 +94,19 @@ function updateHistory(arr) {
 
 
 // History Modal Controller
-function showModal(idName, state, id) {
+function showModal(idName, state, param) {
   modal = document.getElementById(idName);
   modal.className += " is-active";
   switch (state) {
     // search ticket result by id
     case 0:
-      axios.get('http://localhost:8000/result', {params: { ticketId: id }})
+      axios.get('http://localhost:8000/result', {params: { ticketId: param }})
       .then(res => {updateModal(res.data)})
       .catch(err => {console.log(err)})      
       break;
     // call a limited number of tickets
     case 1:
-      axios.get('http://localhost:8000/results')
+      axios.get('http://localhost:8000/results', {params: { limit: param }})
       .then(res => {updateEarnings(res.data)})
       .catch(err => {console.log(err)})
       break
@@ -307,7 +307,7 @@ function uploadTicket(id) {
     
     var  ticketHtml = `<!DOCTYPE html><html lang="en"><head><link rel="stylesheet" href="printStyle.css"><script src="JsBarcode.all.min.js"></script></head><body><button id="btnPrint" class="hidden-print">Print</button><div class=ticket><div class=centered><h2 id=logo>&lt;Logo&gt;</h2><span id=adresse>Boutique Sbikha01 - ${formatDate()} ${hours.length === 1? "0" + hours: hours}:${minutes.length === 1? "0" + minutes: minutes}<br><span>Ticket ${res.data.ticketId}</span></div><div id="Bar" class="centered"><svg id="barcode"></svg></div><div class=flex-container><div class=flex-item><div>GR: ${ticket.gr}</div><div>Gain min/max</div></div><div class="flex-item right"><div>${ticket.combi} X ${ticket.gr} TND = ${ticket.mise} TND</div><p>${ticket.minGain} / ${ticket.maxGain} TND</span></div></div><div class=lineDashed></div>`
     ticket.choiceList.forEach((e, i) => {
-      ticketHtml += `<div id=ChoiceList><div><p class=gameTitle>${res.data.eventId} Spin&Win<div class=flex-container><div class=flex-item><p class=gameInfo>19:32 ${ticketConfig(ticket.choiceList[i].choice)}</div><div class="flex-item right"><p class=Coutes>${ticket.choiceList[i].cotes}</div></div><div class=lineDotted>.............</div></div></div>`
+      ticketHtml += `<div id=ChoiceList><div><p class=gameTitle>${res.data.eventId} Spin&Win<div class=flex-container><div class=flex-item><p class=gameInfo>${hours.length === 1? "0" + hours: hours}:${minutes.length === 1? "0" + minutes: minutes} ${ticketConfig(ticket.choiceList[i].choice)}</div><div class="flex-item right"><p class=Coutes>${ticket.choiceList[i].cotes}</div></div><div class=lineDotted>.............</div></div></div>`
     })
     ticketHtml += `<div class=lineDashed></div></div><div class="flex-container result ticket"><div class=flex-item><div>Mise Totale</div><div>Gain min/max</div></div><div class="flex-item right"><div>${ticket.mise} TND</div><div>${ticket.minGain} / ${ticket.maxGain} TND</div></div></div><script src=print.js></script>`
     
@@ -348,32 +348,63 @@ earningButton.addEventListener('click',() => {
 )
 function updateEarnings(arr) {
   earningContent.innerHTML = ''
+  let dayEarning  = ''
   let revenues = 0
   let expenses = 0
   // use .parse() to fix error and convert date to millisecond
-  let lastDate = new Date(arr[0].date.slice(0,10))
+  let lastDate = new Date(arr[0].date)
   function compareTwoDate(start, end) {
-  let elapsed = end.getDate() - start.getDate()
-    return elapsed
+  let result = end.getDate() === start.getDate()
+    return result
   }
+  console.log(arr[0])
 
   arr.forEach(ticket => {
     let ticketDate = new Date(ticket.date.slice(0,10))
-    if (compareTwoDate(lastDate, ticketDate) !== 0) {
-      earningContent.innerHTML += `<tr><td>${lastDate.toLocaleDateString()}</td><td>${revenues} TND</td><td>${expenses} TND</td><td>${earnings} TND</td></tr>`
+    if (compareTwoDate(lastDate, ticketDate)) {
+      dayEarning = `<tr><td>${lastDate.toLocaleDateString()}</td><td>${revenues} TND</td><td>${expenses} TND</td><td>${revenues - expenses} TND</td></tr>`
+      if (earningContent.children.length !== 0) {
+        earningContent.innerHTML += dayEarning
+        
+      } else {
+        earningContent.innerHTML += (dayEarning)
+      }
       revenues = 0
       expenses = 0
-      lastDate.setDate(lastDate.getDate() + 1);
+      lastDate.setDate(lastDate.getDate() - 1);
     }
+    expenses += Number(ticket.ticketWinSum)
+    revenues += Number(ticket.mise)
+    /*
     switch (ticket.status) {
       case true:
         expenses += Number(ticket.ticketWinSum)
+        revenues += Number(ticket.mise)
         break;
       case false:
         revenues += Number(ticket.mise)
       default:
         break;
     }
+    */
   });
-  earningContent.innerHTML += `<tr><td>${lastDate.toLocaleDateString()}</td><td>${revenues} TND</td><td>${expenses} TND</td><td>${revenues - expenses} TND</td></tr>`
+  dayEarning = `<tr><td>${lastDate.toLocaleDateString()}</td><td>${revenues} TND</td><td>${expenses} TND</td><td>${revenues - expenses} TND</td></tr>`
+  earningContent.innerHTML += (dayEarning)
 }
+
+function updateDeposit() {
+  axios.get('http://localhost:8000/results', {params: { limit: 30 }})
+  .then(res => {updateUI(res.data)})
+  .catch(err => {console.log(err)})
+
+  const deposit = document.querySelector('#deposit')
+  let totalMise = 0
+  function updateUI(arr) {
+    arr.forEach(ticket => {
+      totalMise += ticket.mise - ticket.ticketWinSum
+    })
+    deposit.innerText = `Deposit: ${totalMise + 800} TND` 
+  }
+}
+
+updateDeposit()
