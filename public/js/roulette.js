@@ -4,7 +4,6 @@ const center = document.querySelector(".saw-wheel-container-pointer")
 const sawSector = document.getElementById("sawSector")
 const wheel = document.querySelector("#saw-wheel-bg")
 const timerText = document.querySelector(".saw-next-game-counter")
-const timerBar = document.querySelector(".announcement")
 const pointer = document.querySelector("#saw-wheel-top-pointer")
 const lights = document.querySelectorAll(".light")
 let shouldAnimateLights = false
@@ -218,13 +217,11 @@ setInterval(function() {
   minutes = (minutes < 10) ? "0" + minutes : minutes;
   seconds = (seconds < 10) ? "0" + seconds : seconds;
   
-  timerBar.style.transition = "height 1s linear"
+
   timerText.innerHTML = minutes + ":" + seconds;
   
   // If the count down is over, write some text
     if (timer <= 0) {
-      timerBar.style.transition = "none"
-      timerBar.style.height = "550px"
       axios.get('http://localhost:8000/event')
       .then(res => {
         let result = res.data.result
@@ -260,51 +257,12 @@ setInterval(function() {
       })
       .catch(err => {console.log(err)})
     timer = totalTime
-    timerBar.style.background = "#2ac000"
   } else if (shouldCount) {
     timer-= 1000
-    if (timer <= 60000) {
-      timerBar.style.height = String(550 * timer/60000) + "px"
-      switch (timer) {
-        case 30000:
-          timerBar.style.background = "#cace40"
-          break;
-        case 20000:
-          timerBar.style.background = "#d77700"
-          break;
-        case 10000:
-          timerBar.style.background = "#d0141c"
-          shouldAnimateLights = false
-          break;
-      }
-    } 
   }
 }, 1000);
 
-//Change design after every sprint
-let background = document.querySelector('.saw-container');
-let wheelStyle = document.querySelector('.saw-wheel-container');
 
-function changeStyle(background, wheel){
-  let currentStyle = background.dataset.style  
-  switch (currentStyle) {
-    case "wood":
-      background.dataset.style = "carpet"
-      wheel.dataset.style = "carpet"
-      break;
-    case "carpet":
-      background.dataset.style = "chrome"
-      wheel.dataset.style = "chrome"
-      break;
-    case "chrome":
-      background.dataset.style = "wood"
-      wheel.dataset.style = "wood"
-      break;
-    default:
-      break;
-  }
-  return currentStyle
-}
 // Identify if selected choice equal to current event result
 function checkChoice(choice, result) {
   let i = Number(result)
@@ -423,17 +381,16 @@ function getColor(item) {
 function getGradient(item) {
   const black = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35]
   if(item === 0){
-    return "linear-gradient(180deg,#25aa00 0,#25aa00 24%,#1e9100 66%,#1e9100)";
+    return "#1f952b";
   }else if(black.includes(item)){
-    return "linear-gradient(180deg,#353535 0,#353535 24%,#0f0f0f 66%,#0f0f0f)";
+    return "#221e1f";
   }else{
-    return "linear-gradient(180deg,#ed0404 0,#ed0404 24%,#d33437 66%,#d33437)";
+    return "#e1232b";
   }
 }
 
 function spin() {
   timerText.parentElement.style.display = "none"
-  timerBar.parentElement.style.display = "none"
   sawSector.style.display = "none"
   spinAngleStart = 360 * 9 // only for easeOut function to work
   spinAngle = 50
@@ -455,19 +412,8 @@ function spin() {
 
 let target = 3;
 const rotateWheel = function(a) {
-  switch (wheelStyle.dataset.style) {
-    case "wood":
-      wheel.style.backgroundImage = "url(public/images/wheel_gold_blur_deluxe.e7e787df9dc69ac.png)"
-      break;
-    case "carpet":
-      wheel.style.backgroundImage = "url(public/images/wheel_wood_blur_deluxe.7022eab71a0c2de.png)"
-      break;
-    case "chrome":
-      wheel.style.backgroundImage = "url(public/images/wheel_blur_deluxe.466dfefb796e7ef.png)"
-      break;
-    default:
-      break;
-  }
+    wheel.style.backgroundImage = "url(public/images/wheel-blur.png)"
+
   //wheel.style.backgroundImage = "url(public/images/wheel_gold_blur_deluxe.e7e787df9dc69ac.png)"
   clearInterval(a)
   spinDest += 10; // aka Spin Duration
@@ -500,21 +446,7 @@ function stopRotateWheel(param) {
   document.getElementById("sawSectorValue").innerHTML = options[checkIndex()]
   getEvent(param)
   setTimeout(() => {
-    runFalshAnimation(target)
-  }, 2000);
-  setTimeout(() => {
-    pauseFalshAnimation(target)  
-  }, 10000);
-  console.log(target);
-  flashLights()
-  setTimeout(() => flashLights(), 700);
-  setTimeout(() => flashLights(), 1400);
-  setTimeout(() => flashLights(), 2100);
-  setTimeout(() => flashLights(), 2800);
-  setTimeout(() => {
     timerText.parentElement.style.display = "block"
-    timerBar.parentElement.style.display = "block"
-    changeStyle(background, wheelStyle)
     shouldAnimateLights = true;
   }, 10000);
 }
@@ -531,197 +463,4 @@ function checkIndex() {
   let degrees = (spinAngle%360)/9.72972972973;
   let index = Math.round(degrees)
   return index
-}
-
-//Light Animation
-function flashLights() {
-  lights.forEach(e => e.classList.add("glow"))
-  setTimeout(() => {
-    lights.forEach(e => e.classList.remove("glow"))  
-  }, 500);
-}
-
-function animateHalfLights() {
-  let index = 0
-  let index2 = 0
-  let animation = setInterval(() => {
-    if (index > 18) {
-      lights[index2].classList.remove("glow")
-      index2++
-    }
-    if (index < lights.length) {
-      lights[index].classList.add("glow")
-      index++
-    } else if (index2 === lights.length){
-      clearInterval(animation)
-      lights.forEach(e => e.classList.remove("glow"))
-    }
-  }, 100);
-}
-
-function animateLights() {
-  let index = 0
-  let index2 = 0
-  let animation = setInterval(() => {
-    if (index < lights.length) {
-      lights[index].classList.add("glow")
-      index++
-    } else if (index2 < lights.length){
-      lights[index2].classList.remove("glow")
-      index2++
-    } else {
-      clearInterval(animation)
-      lights.forEach(e => e.classList.remove("glow"))
-    }
-  }, 100);
-}
-
-function flashPairLights() {
-  lights.forEach((e, i) => {if(i%2 === 0){e.classList.add("glow")}})
-  setTimeout(() => {
-    lights.forEach(e => e.classList.remove("glow"))  
-  }, 500);
-}
-
-function flashImpairLights() {
-  lights.forEach((e, i) => {if(i%2 !== 0){e.classList.add("glow")}})
-  setTimeout(() => {
-    lights.forEach(e => e.classList.remove("glow"))  
-  }, 500);
-}
-
-function fullAnimation() {
-  let randomValue = Math.floor((Math.random() * 6) +1)
-  //randomValue = 1
-  switch (randomValue) {
-    case 1:
-      animateLights()
-      setTimeout(() => animateLights(), 6000);
-      break;
-    case 2:
-      animateLights()
-      setTimeout(() => animateHalfLights(), 7400);
-      break;
-    case 3:
-      flashImpairLights()
-      setTimeout(() => flashPairLights(), 1000);
-      setTimeout(() => flashImpairLights(), 2000);
-      setTimeout(() => flashPairLights(), 3000);
-      setTimeout(() => flashImpairLights(), 4000);
-      setTimeout(() => flashPairLights(), 5000);
-      setTimeout(() => flashImpairLights(), 6000);
-      setTimeout(() => flashPairLights(), 7000);
-
-      break;
-    case 5:
-      animateHalfLights()
-      break;
-    case 6:
-      flashLights()
-      setTimeout(() => flashLights(), 1000);
-      setTimeout(() => animateHalfLights(), 2000);
-      break;
-    default:
-      break;
-  }
-}
-
-let lightAnimation = setInterval(()=> {
-  if(shouldAnimateLights){fullAnimation()}
-  }, 20000)
-
-//flash history
-function pauseFalshAnimation(result) {
-  let target = options[result-1]
-  console.log(options[result-1]);
-  history.children[0].children[0].classList.remove("animated")
-  // Update Number
-  if (target == 0 || target == 37) {
-    zero.classList.remove("animated")
-  } else if(target < 13) {
-    numberStat.childNodes[0].childNodes[target-1].children[1].children[0].classList.remove("animated")
-  } else if(target < 25) {
-    numberStat.childNodes[1].childNodes[target-13].children[1].children[0].classList.remove("animated")
-  } else {
-    numberStat.childNodes[2].childNodes[target-25].children[1].children[0].classList.remove("animated")
-  }
-  // Update Colors
-  if (red.includes(target)) {
-    colorStat[0].classList.remove("animated")
-  } else if(black.includes(target)) {
-    colorStat[1].classList.remove("animated")
-  } else {
-    colorStat[2].classList.remove("animated")
-  }
-
-  // Update Twelves
-  if (target < 16) {
-    twelveStat[0].classList.remove("animated")
-  } else if(target < 25) {
-    twelveStat[1].classList.remove("animated")
-  } else {
-    twelveStat[2].classList.remove("animated")
-  }
-
-  // Update Sections
-  if (sectionA.includes(target)) {
-    sectionStat[0].classList.remove("animated")
-  } else if(sectionB.includes(target)) {
-    sectionStat[1].classList.remove("animated")
-  } else if (sectionC.includes(target)){
-    sectionStat[2].classList.remove("animated")
-  } else if (sectionD.includes(target)){
-    sectionStat[3].classList.remove("animated")
-  } else if (sectionE.includes(target)){
-    sectionStat[4].classList.remove("animated")
-  } else if (sectionF.includes(target)){
-    sectionStat[5].classList.remove("animated")
-  }
-}
-
-function runFalshAnimation(result) {
-  let target = options[result-1]
-  history.children[0].children[0].classList.add("animated")
-  // Update Number
-  if (target == 0 || target == 37) {
-    zero.classList.add("animated")
-  } else if(target < 13) {
-    numberStat.childNodes[0].childNodes[target-1].children[1].children[0].classList.add("animated")
-  } else if(target < 25) {
-    numberStat.childNodes[1].childNodes[target-13].children[1].children[0].classList.add("animated")
-  } else {
-    numberStat.childNodes[2].childNodes[target-25].children[1].children[0].classList.add("animated")
-  }
-  // Update Colors
-  if (red.includes(target)) {
-    colorStat[0].classList.add("animated")
-  } else if(black.includes(target)) {
-    colorStat[1].classList.add("animated")
-  } else {
-    colorStat[2].classList.add("animated")
-  }
-
-  // Update Twelves
-  if (target < 16) {
-    twelveStat[0].classList.add("animated")
-  } else if(target < 25) {
-    twelveStat[1].classList.add("animated")
-  } else {
-    twelveStat[2].classList.add("animated")
-  }
-
-  // Update Sections
-  if (sectionA.includes(target)) {
-    sectionStat[0].classList.add("animated")
-  } else if(sectionB.includes(target)) {
-    sectionStat[1].classList.add("animated")
-  } else if (sectionC.includes(target)){
-    sectionStat[2].classList.add("animated")
-  } else if (sectionD.includes(target)){
-    sectionStat[3].classList.add("animated")
-  } else if (sectionE.includes(target)){
-    sectionStat[4].classList.add("animated")
-  } else if (sectionF.includes(target)){
-    sectionStat[5].classList.add("animated")
-  }
 }

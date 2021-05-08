@@ -299,17 +299,17 @@ function uploadTicket(id) {
       let year = date.getFullYear().toString()
       let day = date.getDate().toString().length === 1? ("0" + date.getDate().toString()): date.getDate().toString();
       let month = date.getMonth().toString()
-      return `${day}.${month}.${year}`
+      return `${day}/${month}/${year}`
     }
     let hours = date.getHours().toString()
     let minutes = date.getMinutes().toString()
     var ticketWindow = window.open("","wildebeast","width=300,height=500,scrollbars=1,resizable=1")
     
-    var  ticketHtml = `<!DOCTYPE html><html lang="en"><head><link rel="stylesheet" href="printStyle.css"><script src="JsBarcode.all.min.js"></script></head><body><button id="btnPrint" class="hidden-print">Print</button><div class=ticket><div class=centered><h2 id=logo>&lt;Logo&gt;</h2><span id=adresse>Boutique Sbikha01 - ${formatDate()} ${hours.length === 1? "0" + hours: hours}:${minutes.length === 1? "0" + minutes: minutes}<br><span>Ticket ${res.data.ticketId}</span></div><div id="Bar" class="centered"><svg id="barcode"></svg></div><div class=flex-container><div class=flex-item><div>GR: ${ticket.gr}</div><div>Gain min/max</div></div><div class="flex-item right"><div>${ticket.combi} X ${ticket.gr} TND = ${ticket.mise} TND</div><p>${ticket.minGain} / ${ticket.maxGain} TND</span></div></div><div class=lineDashed></div>`
+    var  ticketHtml = `<!DOCTYPE html><html lang="en"><head><link rel="stylesheet" href="printStyle.css"><script src="JsBarcode.all.min.js"></script></head><body><button id="btnPrint" class="hidden-print">Print</button><div class=ticket><div class=centered><h2 id=logo><img src="./public/images/logo.jpg"/></h2><span>Date: ${formatDate()} ${hours.length === 1? "0" + hours: hours}:${minutes.length === 1? "0" + minutes: minutes}</span></div><div id="Bar" class="centered"><svg id="barcode"></svg></div><p class="ticketNumber">${res.data.ticketId}</p><div class=flex-container><div class=flex-item><p>GR: ${ticket.gr}</p><p>Gain min/max</p></div><div class="flex-item right"><p>${ticket.combi} X ${ticket.gr} TND = ${ticket.mise} TND</p><p>${ticket.minGain} / ${ticket.maxGain} TND</p></div></div>`
     ticket.choiceList.forEach((e, i) => {
-      ticketHtml += `<div id=ChoiceList><div><p class=gameTitle>${res.data.eventId} Spin&Win<div class=flex-container><div class=flex-item><p class=gameInfo>${hours.length === 1? "0" + hours: hours}:${minutes.length === 1? "0" + minutes: minutes} ${ticketConfig(ticket.choiceList[i].choice)}</div><div class="flex-item right"><p class=Coutes>${ticket.choiceList[i].cotes}</div></div><div class=lineDotted>.............</div></div></div>`
+      ticketHtml += `<div id=ChoiceList><div class=flex-container><div class=flex-item><p>Selection</p><p>Coutes</p></div><div class="flex-item right"><p>${ticketConfig(ticket.choiceList[i].choice)}</p><p>${ticket.choiceList[i].cotes}</p></div></div></div>`
     })
-    ticketHtml += `<div class=lineDashed></div></div><div class="flex-container result ticket"><div class=flex-item><div>Mise Totale</div><div>Gain min/max</div></div><div class="flex-item right"><div>${ticket.mise} TND</div><div>${ticket.minGain} / ${ticket.maxGain} TND</div></div></div><script src=print.js></script>`
+    ticketHtml += `<div class="flex-container result ticket"><div class=flex-item><div>Mise Totale</div><div>Gain min/max</div></div><div class="flex-item right"><div>${ticket.mise} TND</div><div>${ticket.minGain} / ${ticket.maxGain} TND</div></div></div><script src=print.js></script>`
     
     ticketWindow.document.open()
     ticketWindow.document.write(ticketHtml)
@@ -318,28 +318,7 @@ function uploadTicket(id) {
   })
   .catch(err => {console.log(err)})
 }
-/*
-function UpdateFormDate() {
-  const fromDate = document.querySelector("#fromDate");
-  const toDate = document.querySelector("#toDate");
 
-  const startDate = fromDate.querySelector(".date")
-  const startTime = fromDate.querySelector(".time")
-  const endDate = toDate.querySelector(".date")
-  const endTime = toDate.querySelector(".time")
-  
-  let current_datetime = new Date()
-  let formatted_date = current_datetime.getDate() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getFullYear()
-  let formatted_time = (current_datetime.getHours()) + ":" + current_datetime.getMinutes()
-
-  startDate.value = formatted_date
-  startTime.value = formatted_time
-  endDate.value = formatted_date
-  endTime.value = formatted_time
-  
-  //let startDate = new Date(2018, startMonth, 24, 10);
-}
-*/
 const earningButton = document.querySelector("#earning-button")
 const earningContent = document.querySelector("#earnings-content")
 earningButton.addEventListener('click',() => {
@@ -357,7 +336,6 @@ function updateEarnings(arr) {
   let result = end.getDate() === start.getDate()
     return result
   }
-  console.log(arr[0])
 
   arr.forEach(ticket => {
     let ticketDate = new Date(ticket.date.slice(0,10))
